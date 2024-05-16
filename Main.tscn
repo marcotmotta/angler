@@ -1,18 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=10 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="Texture2D" uid="uid://civqiedcggdye" path="res://Prototype_Grid_Gray_01-128x128.png" id="1_bwupa"]
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
+[ext_resource type="PackedScene" uid="uid://dwonq6smq66e5" path="res://Assets/Tree/Tree.tscn" id="3_hh85d"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8aedf"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4dfa3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_yu4jj"]
-sky_material = SubResource("ProceduralSkyMaterial_8aedf")
+[sub_resource type="Sky" id="Sky_qq0jm"]
+sky_material = SubResource("ProceduralSkyMaterial_4dfa3")
 
-[sub_resource type="Environment" id="Environment_k35et"]
+[sub_resource type="Environment" id="Environment_mh4s5"]
 background_mode = 2
-sky = SubResource("Sky_yu4jj")
+sky = SubResource("Sky_qq0jm")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -30,10 +31,10 @@ points = PackedVector3Array(-25, -0.5, -25, -25, 0.5, -25, 25, -0.5, -25, -25, -
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_k35et")
+environment = SubResource("Environment_mh4s5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -47,3 +48,6 @@ shape = SubResource("ConvexPolygonShape3D_0tsad")
 
 [node name="Player" parent="." instance=ExtResource("1_vcvoh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02364, 0)
+
+[node name="Tree" parent="." instance=ExtResource("3_hh85d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62432, 1.99449, -12.4254)

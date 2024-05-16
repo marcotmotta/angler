@@ -1,13 +1,13 @@
 extends CharacterBody3D
 
-var SPEED = 10
-var JUMP_SPEED = 20
+var SPEED = 4
+var JUMP_SPEED = 7
 
 var camera
 var rotation_helper
 var first_person = true
 
-var MOUSE_SENSITIVITY = 0.05
+var MOUSE_SENSITIVITY = 0.04
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
