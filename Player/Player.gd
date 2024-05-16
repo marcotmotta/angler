@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+# Movement and camera parameters
 var SPEED = 4
 var JUMP_SPEED = 7
 
@@ -11,12 +12,30 @@ var MOUSE_SENSITIVITY = 0.04
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+# Pick up logic
+var pick_up_object = null
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	# Camera
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
+
+func _check_pick_up():
+	var collision_object = $Rotation_Helper/PickUpRay.get_collider()
+	if collision_object is CollectibleComponent:
+		pick_up_object = collision_object
+		$UI/Control/PickUpLabel.text = 'Press E\nPick Up ' + collision_object.TYPE.capitalize()
+		$UI/Control/PickUpLabel.visible = true
+		return
+
+	pick_up_object = {}
+	$UI/Control/PickUpLabel.text = ''
+	$UI/Control/PickUpLabel.visible = false
+
+func _process(delta):
+	_check_pick_up()
 
 func _physics_process(delta):
 	var camera_transform = camera.get_global_transform()
@@ -78,6 +97,13 @@ func _input(event):
 		$Rotation_Helper/HitArea/CollisionShape3D.disabled = false
 		await get_tree().create_timer(0.5).timeout
 		$Rotation_Helper/HitArea/CollisionShape3D.disabled = true
+
+	if Input.is_action_just_pressed("e"):
+		if pick_up_object:
+			pick_up_object.pick_up(self)
+
+func add_item(item):
+	pass
 
 func _on_hit_area_area_entered(area):
 	if area is DestructibleComponent:

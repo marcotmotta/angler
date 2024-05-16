@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=6 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 
@@ -9,6 +9,11 @@ size = Vector3(2, 2, 2)
 
 [sub_resource type="CapsuleShape3D" id="3"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_88oej"]
+font_size = 25
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1")
 
@@ -16,21 +21,70 @@ script = ExtResource("1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304832, 0)
 
 [node name="Camera" type="Camera3D" parent="Rotation_Helper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33957, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 current = true
 
 [node name="HitArea" type="Area3D" parent="Rotation_Helper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.304832, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rotation_Helper/HitArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.975686)
 shape = SubResource("BoxShape3D_1w1th")
 disabled = true
 
+[node name="PickUpRay" type="RayCast3D" parent="Rotation_Helper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -2.5)
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 mesh = SubResource("1")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("3")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PickUpLabel" type="Label" parent="UI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 36.0
+offset_right = 125.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press E
+Pick Up Wood"
+label_settings = SubResource("LabelSettings_88oej")
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="Rotation_Helper/HitArea" to="." method="_on_hit_area_area_entered"]

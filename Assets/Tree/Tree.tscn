@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwonq6smq66e5"]
+[gd_scene load_steps=7 format=3 uid="uid://dwonq6smq66e5"]
 
 [ext_resource type="PackedScene" uid="uid://bktpeofomw12f" path="res://Assets/DestructibleComponent.tscn" id="2_4nfr8"]
+[ext_resource type="PackedScene" uid="uid://dbchv32r0lpfx" path="res://Items/Wood/Wood.tscn" id="2_6hjya"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mi8ur"]
 albedo_color = Color(0.18, 0, 0, 1)
@@ -26,6 +27,7 @@ mesh = SubResource("BoxMesh_6db5p")
 shape = SubResource("ConvexPolygonShape3D_cgh86")
 
 [node name="DestructibleComponent" parent="." instance=ExtResource("2_4nfr8")]
+drop = ExtResource("2_6hjya")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DestructibleComponent"]
 shape = SubResource("ConvexPolygonShape3D_gdmpm")

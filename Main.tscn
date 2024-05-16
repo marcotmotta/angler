@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=11 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="Texture2D" uid="uid://civqiedcggdye" path="res://Prototype_Grid_Gray_01-128x128.png" id="1_bwupa"]
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="PackedScene" uid="uid://dwonq6smq66e5" path="res://Assets/Tree/Tree.tscn" id="3_hh85d"]
+[ext_resource type="PackedScene" uid="uid://dbchv32r0lpfx" path="res://Items/Wood/Wood.tscn" id="4_uleg5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hxw53"]
 
@@ -52,3 +53,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02364, 0)
 
 [node name="Tree" parent="." instance=ExtResource("3_hh85d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62432, 1.99449, -5.85325)
+
+[node name="Wood" parent="." instance=ExtResource("4_uleg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -4)
