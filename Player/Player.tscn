@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=5 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1w1th"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="CapsuleMesh" id="1"]
 
@@ -16,8 +19,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304832, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33957, 0)
 current = true
 
+[node name="HitArea" type="Area3D" parent="Rotation_Helper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.304832, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rotation_Helper/HitArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.975686)
+shape = SubResource("BoxShape3D_1w1th")
+disabled = true
+
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 mesh = SubResource("1")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("3")
+
+[connection signal="body_entered" from="Rotation_Helper/HitArea" to="." method="_on_hit_area_body_entered"]

@@ -60,7 +60,7 @@ func _input(event):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	# Third person
+	# Third person FIXME: debug purposes. there wont be third person in the game
 	if Input.is_action_just_pressed("f5"):
 		if first_person:
 			camera.position.y = 3
@@ -72,3 +72,13 @@ func _input(event):
 			camera.position.z = -0.3
 			camera.rotation_degrees.x = 0
 			first_person = true
+
+	if Input.is_action_just_pressed("action1"):
+		# FIXME: just do anything other than this. this is garbage
+		$Rotation_Helper/HitArea/CollisionShape3D.disabled = false
+		await get_tree().create_timer(0.5).timeout
+		$Rotation_Helper/HitArea/CollisionShape3D.disabled = true
+
+func _on_hit_area_body_entered(body):
+	if body.has_method('take_damage'):
+		body.take_damage(30)
