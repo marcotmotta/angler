@@ -33,4 +33,4 @@ mesh = SubResource("1")
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("3")
 
-[connection signal="body_entered" from="Rotation_Helper/HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="area_entered" from="Rotation_Helper/HitArea" to="." method="_on_hit_area_area_entered"]

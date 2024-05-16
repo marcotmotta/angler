@@ -79,6 +79,7 @@ func _input(event):
 		await get_tree().create_timer(0.5).timeout
 		$Rotation_Helper/HitArea/CollisionShape3D.disabled = true
 
-func _on_hit_area_body_entered(body):
-	if body.has_method('take_damage'):
-		body.take_damage(30)
+func _on_hit_area_area_entered(area):
+	if area is DestructibleComponent:
+		var destructible:DestructibleComponent = area
+		destructible.take_hit(30)

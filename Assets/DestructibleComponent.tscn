@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bktpeofomw12f"]
+
+[ext_resource type="Script" path="res://Assets/DestructibleComponent.gd" id="1_3wfml"]
+
+[node name="DestructibleComponent" type="Area3D"]
+script = ExtResource("1_3wfml")
