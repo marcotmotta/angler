@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=10 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 
 [sub_resource type="Animation" id="Animation_hdfln"]
 resource_name = "camera_walk"
 length = 2.0
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,10 +33,26 @@ tracks/0/keys = {
 "values": [Vector3(0, 0.5, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ko56m"]
+resource_name = "stop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5tle"]
 _data = {
 "RESET": SubResource("Animation_83a77"),
-"camera_walk": SubResource("Animation_hdfln")
+"camera_walk": SubResource("Animation_hdfln"),
+"stop": SubResource("Animation_ko56m")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1w1th"]
@@ -66,7 +81,6 @@ current = true
 libraries = {
 "": SubResource("AnimationLibrary_f5tle")
 }
-autoplay = "camera_walk"
 
 [node name="HitArea" type="Area3D" parent="Rotation_Helper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

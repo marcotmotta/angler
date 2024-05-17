@@ -28,11 +28,13 @@ func _check_pick_up():
 		pick_up_object = collision_object
 		$UI/Control/PickUpLabel.text = 'Press E\nPick Up ' + collision_object.TYPE.capitalize()
 		$UI/Control/PickUpLabel.visible = true
+		$UI/Control/ColorRect.color = 'red'
 		return
 
 	pick_up_object = {}
 	$UI/Control/PickUpLabel.text = ''
 	$UI/Control/PickUpLabel.visible = false
+	$UI/Control/ColorRect.color = 'white'
 
 func _process(delta):
 	_check_pick_up()
@@ -54,9 +56,10 @@ func _physics_process(delta):
 
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
-		$Rotation_Helper/CameraAnimation.play("camera_walk")
+		print(direction)
+		$Rotation_Helper/CameraAnimation.play("camera_walk", 1)
 	else:
-		$Rotation_Helper/CameraAnimation.stop()
+		$Rotation_Helper/CameraAnimation.play("stop", 0.1)
 
 	# Ground Velocity
 	velocity.x = direction.x * SPEED
