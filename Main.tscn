@@ -55,4 +55,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02364, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62432, 1.99449, -5.85325)
 
 [node name="Wood" parent="." instance=ExtResource("4_uleg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -4)

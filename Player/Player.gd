@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 # Movement and camera parameters
-var SPEED = 4
+var SPEED = 3
 var JUMP_SPEED = 7
 
 var camera
@@ -54,6 +54,9 @@ func _physics_process(delta):
 
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
+		$Rotation_Helper/CameraAnimation.play("camera_walk")
+	else:
+		$Rotation_Helper/CameraAnimation.stop()
 
 	# Ground Velocity
 	velocity.x = direction.x * SPEED
@@ -108,4 +111,4 @@ func add_item(item):
 func _on_hit_area_area_entered(area):
 	if area is DestructibleComponent:
 		var destructible:DestructibleComponent = area
-		destructible.take_hit(30)
+		destructible.take_hit(50)
