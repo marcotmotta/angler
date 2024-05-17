@@ -1,6 +1,22 @@
 [gd_scene load_steps=10 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b6mud5iaoeis" path="res://Items/Axe/Axe.tscn" id="2_38miw"]
+
+[sub_resource type="Animation" id="Animation_83a77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_hdfln"]
 resource_name = "camera_walk"
@@ -16,21 +32,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.5, 0), Vector3(0.2, 0.4, 0), Vector3(0, 0.5, 0), Vector3(-0.2, 0.4, 0), Vector3(0, 0.5, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_83a77"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.5, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ko56m"]
@@ -54,9 +55,6 @@ _data = {
 "camera_walk": SubResource("Animation_hdfln"),
 "stop": SubResource("Animation_ko56m")
 }
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1w1th"]
-size = Vector3(2, 2, 2)
 
 [sub_resource type="CapsuleMesh" id="1"]
 
@@ -82,19 +80,16 @@ libraries = {
 "": SubResource("AnimationLibrary_f5tle")
 }
 
-[node name="HitArea" type="Area3D" parent="Rotation_Helper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rotation_Helper/HitArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.975686)
-shape = SubResource("BoxShape3D_1w1th")
-disabled = true
-
 [node name="PickUpRay" type="RayCast3D" parent="Rotation_Helper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 target_position = Vector3(0, 0, -2.5)
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="Marker3D" type="Marker3D" parent="Rotation_Helper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -1)
+
+[node name="Axe" parent="Rotation_Helper/Marker3D" instance=ExtResource("2_38miw")]
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 mesh = SubResource("1")
@@ -144,5 +139,3 @@ text = "Press E
 Pick Up Wood"
 label_settings = SubResource("LabelSettings_88oej")
 horizontal_alignment = 1
-
-[connection signal="area_entered" from="Rotation_Helper/HitArea" to="." method="_on_hit_area_area_entered"]

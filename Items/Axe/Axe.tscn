@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6mud5iaoeis"]
+
+[ext_resource type="Script" path="res://Items/Axe/Axe.gd" id="1_fbgth"]
+[ext_resource type="ArrayMesh" uid="uid://bed8jf85k4t7d" path="res://Items/Axe/machado.obj" id="1_g8iix"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x0ntw"]
+points = PackedVector3Array(-0.0444261, 0.785576, -0.211204, 0.0303736, 0.785576, 0.162855, -0.0194831, 0.785576, 0.162855, 0.0303736, -0.760469, 0.137902, 0.0303736, 0.785576, -0.286016, -0.0444261, -0.760469, 0.0131847, 0.0802595, 0.810572, 0.112949, 0.0553165, -0.735316, 0.0131847, -0.069369, 0.810572, 0.137902, -0.0194831, 0.586071, -0.310969, -0.0444261, -0.760469, 0.137902, -0.069369, 0.636064, -0.0616272, 0.0802595, 0.636064, 0.0131847, 0.0303736, 0.56123, -0.286016, 0.0553165, -0.760469, 0.112949, -0.069369, 0.835569, 0.0131847, -0.0444261, 0.636064, -0.211204, -0.0194831, 0.785576, -0.310969, 0.0802595, 0.810572, 0.0131847, 0.00544523, 0.586071, -0.310969, -0.069369, 0.636064, 0.137902, 0.0303736, -0.760469, 0.0131847, 0.0802595, 0.636064, 0.112949, 0.0303736, 0.636064, 0.162855, -0.069369, 0.810572, -0.0616272, -0.0194831, 0.636064, 0.162855, -0.069369, 0.611068, 0.0381374, -0.069369, 0.835569, 0.0630901, 0.00544523, 0.785576, -0.310969, 0.0553165, -0.760469, 0.0381374, 0.0553165, 0.586071, -0.136346, -0.069369, 0.611068, 0.0630901)
+
+[sub_resource type="Animation" id="Animation_a4c5b"]
+resource_name = "swing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.5, 0, 0), Vector3(-2, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.872665, -1.5708, -1.5708), Vector3(-0.436332, 2.26893, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_x6y3d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3bm3s"]
+resource_name = "swing_back"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.436332, 2.26893, -1.5708), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r8xs3"]
+_data = {
+"RESET": SubResource("Animation_x6y3d"),
+"swing": SubResource("Animation_a4c5b"),
+"swing_back": SubResource("Animation_3bm3s")
+}
+
+[node name="Axe" type="Area3D"]
+script = ExtResource("1_fbgth")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_g8iix")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_x0ntw")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r8xs3")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

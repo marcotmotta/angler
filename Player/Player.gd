@@ -98,11 +98,8 @@ func _input(event):
 			camera.rotation_degrees.x = 0
 			first_person = true
 
-	if Input.is_action_just_pressed("action1"):
-		# FIXME: just do anything other than this. this is garbage
-		$Rotation_Helper/HitArea/CollisionShape3D.disabled = false
-		await get_tree().create_timer(0.5).timeout
-		$Rotation_Helper/HitArea/CollisionShape3D.disabled = true
+	if Input.is_action_pressed("action1"):
+		$Rotation_Helper/Marker3D/Axe.action()
 
 	if Input.is_action_just_pressed("e"):
 		if pick_up_object:
@@ -110,8 +107,3 @@ func _input(event):
 
 func add_item(item):
 	pass
-
-func _on_hit_area_area_entered(area):
-	if area is DestructibleComponent:
-		var destructible:DestructibleComponent = area
-		destructible.take_hit(50)
