@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=13 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="Texture2D" uid="uid://civqiedcggdye" path="res://Prototype_Grid_Gray_01-128x128.png" id="1_bwupa"]
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
@@ -21,13 +21,16 @@ albedo_texture = ExtResource("1_bwupa")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_f70rp"]
-lightmap_size_hint = Vector2i(504, 266)
+lightmap_size_hint = Vector2i(664, 366)
 material = SubResource("StandardMaterial3D_k6p2m")
 add_uv2 = true
-size = Vector3(50, 1, 50)
+size = Vector3(70, 1, 62)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0tsad"]
-points = PackedVector3Array(-25, -0.5, -25, -25, 0.5, -25, 25, -0.5, -25, -25, -0.5, 25, -25, 0.5, 25, 25, 0.5, -25, 25, -0.5, 25, 25, 0.5, 25)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f0huf"]
+points = PackedVector3Array(-35, -0.5, -31, -35, 0.5, -31, 35, -0.5, -31, -35, -0.5, 31, -35, 0.5, 31, 35, 0.5, -31, 35, -0.5, 31, 35, 0.5, 31)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbbik"]
+size = Vector3(2.3, 2.3, 2.3)
 
 [node name="Main" type="Node3D"]
 
@@ -36,9 +39,13 @@ environment = SubResource("Environment_7kri6")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48515, 43.2726, -11.3437)
+visible = false
 light_energy = 1000.0
 shadow_enabled = true
 omni_range = 50.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.604683, 0.62516, -0.493491, 0, 0.619601, 0.784917, 0.796467, -0.474626, 0.374662, 0, 8.8106, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -47,7 +54,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_f70rp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("ConvexPolygonShape3D_0tsad")
+shape = SubResource("ConvexPolygonShape3D_f0huf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29809, 1.65601, 0)
+mesh = SubResource("BoxMesh_sbbik")
 
 [node name="Player" parent="." instance=ExtResource("1_vcvoh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02364, 0)
