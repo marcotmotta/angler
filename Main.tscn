@@ -63,7 +63,7 @@ mesh = SubResource("PlaneMesh_blwn6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.4023, 0)
 
 [node name="Tree" parent="." instance=ExtResource("3_hh85d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62432, 8.51608, -5.85325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62432, 5.51626, -5.85325)
 
 [node name="Wood" parent="." instance=ExtResource("4_uleg5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7.77785, -4)

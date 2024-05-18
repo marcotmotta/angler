@@ -7,6 +7,7 @@ class_name DestructibleComponent
 var health: float
 
 @export var drop: Resource
+@export var particle: Resource
 
 func _ready() -> void:
 	randomize()
@@ -14,6 +15,11 @@ func _ready() -> void:
 
 func take_hit(amount: float) -> void:
 	health -= amount
+	
+	if particle:
+		var particle_instance = particle.instantiate()
+		particle_instance.global_position = global_position
+		get_parent().get_parent().add_child(particle_instance)
 
 	if health <= 0:
 		if drop:

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmaxtimv34w2x"]
+
+[ext_resource type="Script" path="res://Assets/Tree/TreeParticles.gd" id="1_ngnct"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f51kp"]
+albedo_color = Color(0.203922, 0.160784, 0.160784, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vqljg"]
+material = SubResource("StandardMaterial3D_f51kp")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_d1bih"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.452527), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles3D" type="CPUParticles3D"]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.8
+mesh = SubResource("BoxMesh_vqljg")
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 1.5, 0.2)
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+scale_amount_curve = SubResource("Curve_d1bih")
+script = ExtResource("1_ngnct")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
