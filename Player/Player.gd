@@ -12,12 +12,16 @@ var MOUSE_SENSITIVITY = 0.04
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+# Health parameters
+var MAX_HEALTH = 5
+var health = MAX_HEALTH
+
 # Pick up logic
 var pick_up_object = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+
 	# Camera
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
@@ -56,7 +60,6 @@ func _physics_process(delta):
 
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
-		print(direction)
 		$Rotation_Helper/CameraAnimation.play("camera_walk", 1)
 	else:
 		$Rotation_Helper/CameraAnimation.play("stop", 0.1)
@@ -107,3 +110,12 @@ func _input(event):
 
 func add_item(item):
 	pass
+
+func _on_damage_timeout():
+	var light = get_parent().get_node("OmniLight3D")
+	if (self.global_position - light.global_position).length() > light.omni_range:
+		health = max(0, health - 1)
+	else:
+		health = min(MAX_HEALTH, health + 1)
+
+	print(health)
