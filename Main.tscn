@@ -6,15 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://dbchv32r0lpfx" path="res://Items/Wood/Wood.tscn" id="4_uleg5"]
 [ext_resource type="Script" path="res://Dialog.gd" id="5_h44ja"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hxw53"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e6eqj"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_pot0k"]
-sky_material = SubResource("ProceduralSkyMaterial_hxw53")
+[sub_resource type="Sky" id="Sky_d8d1b"]
+sky_material = SubResource("ProceduralSkyMaterial_e6eqj")
 
-[sub_resource type="Environment" id="Environment_7kri6"]
-background_energy_multiplier = 0.0
-sky = SubResource("Sky_pot0k")
-ambient_light_source = 3
+[sub_resource type="Environment" id="Environment_k18kr"]
+background_mode = 2
+sky = SubResource("Sky_d8d1b")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6p2m"]
 albedo_texture = ExtResource("1_bwupa")
@@ -35,17 +38,17 @@ size = Vector3(2.3, 2.3, 2.3)
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7kri6")
+environment = SubResource("Environment_k18kr")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48515, 43.2726, -11.3437)
-visible = false
 light_energy = 1000.0
 shadow_enabled = true
 omni_range = 50.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.604683, 0.62516, -0.493491, 0, 0.619601, 0.784917, 0.796467, -0.474626, 0.374662, 0, 8.8106, 0)
+visible = false
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
