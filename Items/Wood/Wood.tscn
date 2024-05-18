@@ -5,11 +5,11 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5bf4n"]
 bounce = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_si76v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dd6q"]
 albedo_color = Color(0.16, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_e4ptq"]
-material = SubResource("StandardMaterial3D_si76v")
+material = SubResource("StandardMaterial3D_3dd6q")
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4uuag"]
