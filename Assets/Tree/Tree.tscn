@@ -1,33 +1,41 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwonq6smq66e5"]
+[gd_scene load_steps=8 format=3 uid="uid://dwonq6smq66e5"]
 
 [ext_resource type="PackedScene" uid="uid://bktpeofomw12f" path="res://Assets/DestructibleComponent.tscn" id="2_4nfr8"]
 [ext_resource type="PackedScene" uid="uid://dbchv32r0lpfx" path="res://Items/Wood/Wood.tscn" id="2_6hjya"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mi8ur"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mt571"]
 albedo_color = Color(0.18, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6db5p"]
-lightmap_size_hint = Vector2i(14, 51)
-material = SubResource("StandardMaterial3D_mi8ur")
+lightmap_size_hint = Vector2i(9, 48)
+material = SubResource("StandardMaterial3D_mt571")
 add_uv2 = true
-size = Vector3(1, 4, 1)
+size = Vector3(0.5, 4, 0.5)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cgh86"]
-points = PackedVector3Array(-0.5, -2, -0.5, -0.5, -2, 0.5, -0.5, 2, -0.5, 0.5, -2, -0.5, 0.5, -2, 0.5, -0.5, 2, 0.5, 0.5, 2, -0.5, 0.5, 2, 0.5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_batpv"]
+albedo_color = Color(0.147333, 0.52, 0, 1)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gdmpm"]
-points = PackedVector3Array(-0.5, -2, -0.5, -0.5, -2, 0.5, -0.5, 2, -0.5, 0.5, -2, -0.5, 0.5, -2, 0.5, -0.5, 2, 0.5, 0.5, 2, -0.5, 0.5, 2, 0.5)
+[sub_resource type="BoxMesh" id="BoxMesh_e3hx8"]
+material = SubResource("StandardMaterial3D_batpv")
+size = Vector3(3, 1, 3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3ra2i"]
+points = PackedVector3Array(-0.25, -2, -0.25, -0.25, -2, 0.25, -0.25, 2, -0.25, 0.25, -2, -0.25, 0.25, -2, 0.25, -0.25, 2, 0.25, 0.25, 2, -0.25, 0.25, 2, 0.25)
 
 [node name="Tree" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_6db5p")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3518, 0)
+mesh = SubResource("BoxMesh_e3hx8")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_cgh86")
+shape = SubResource("ConvexPolygonShape3D_3ra2i")
 
 [node name="DestructibleComponent" parent="." instance=ExtResource("2_4nfr8")]
 drop = ExtResource("2_6hjya")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DestructibleComponent"]
-shape = SubResource("ConvexPolygonShape3D_gdmpm")
+shape = SubResource("ConvexPolygonShape3D_3ra2i")

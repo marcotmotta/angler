@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ks6v3dqyosw1"]
+
+[ext_resource type="Script" path="res://Items/Note/Note.gd" id="1_h3qag"]
+[ext_resource type="PackedScene" uid="uid://1c16c642xy43" path="res://Items/CollectibleComponent.tscn" id="1_mciva"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e038v"]
+albedo_color = Color(1, 0.691669, 0.242601, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gmmbl"]
+material = SubResource("StandardMaterial3D_e038v")
+size = Vector3(0.7, 0.03, 1)
+subdivide_width = 3
+subdivide_depth = 3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2wuwq"]
+size = Vector3(0.9, 0.9, 0.9)
+
+[node name="Note" type="SoftBody3D"]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_gmmbl")
+simulation_precision = 10
+linear_stiffness = 0.1
+script = ExtResource("1_h3qag")
+
+[node name="CollectibleComponent" parent="." instance=ExtResource("1_mciva")]
+TYPE = "note"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectibleComponent"]
+shape = SubResource("BoxShape3D_2wuwq")

@@ -1,47 +1,29 @@
-[gd_scene load_steps=16 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=12 format=3 uid="uid://uosxp1047q5q"]
 
-[ext_resource type="Texture2D" uid="uid://civqiedcggdye" path="res://Prototype_Grid_Gray_01-128x128.png" id="1_bwupa"]
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="Shader" path="res://Shaders/LowPolyWater.gdshader" id="2_s5ct0"]
 [ext_resource type="PackedScene" uid="uid://dwonq6smq66e5" path="res://Assets/Tree/Tree.tscn" id="3_hh85d"]
 [ext_resource type="PackedScene" uid="uid://dbchv32r0lpfx" path="res://Items/Wood/Wood.tscn" id="4_uleg5"]
-[ext_resource type="Script" path="res://Dialog.gd" id="5_h44ja"]
+[ext_resource type="PackedScene" uid="uid://ks6v3dqyosw1" path="res://Items/Note/Note.tscn" id="6_biadx"]
+[ext_resource type="PackedScene" uid="uid://ce4oupxthxwyj" path="res://Assets/Map/Map.tscn" id="6_hfbka"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e6eqj"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_geko2"]
 
-[sub_resource type="Sky" id="Sky_d8d1b"]
-sky_material = SubResource("ProceduralSkyMaterial_e6eqj")
+[sub_resource type="Sky" id="Sky_kbloi"]
+sky_material = SubResource("ProceduralSkyMaterial_geko2")
 
 [sub_resource type="Environment" id="Environment_k18kr"]
 background_mode = 2
-sky = SubResource("Sky_d8d1b")
+sky = SubResource("Sky_kbloi")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6p2m"]
-albedo_texture = ExtResource("1_bwupa")
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_f70rp"]
-lightmap_size_hint = Vector2i(664, 366)
-material = SubResource("StandardMaterial3D_k6p2m")
-add_uv2 = true
-size = Vector3(70, 1, 62)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f0huf"]
-points = PackedVector3Array(-35, -0.5, -31, -35, 0.5, -31, 35, -0.5, -31, -35, -0.5, 31, -35, 0.5, 31, 35, 0.5, -31, 35, -0.5, 31, 35, 0.5, 31)
-
-[sub_resource type="BoxMesh" id="BoxMesh_sbbik"]
-size = Vector3(2.3, 2.3, 2.3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1pnir"]
 render_priority = 0
 shader = ExtResource("2_s5ct0")
 shader_parameter/water_color = Color(0.2, 0.6, 0.8, 1)
 shader_parameter/emission = Vector3(0, 0, 0)
-shader_parameter/height = 0.8
+shader_parameter/height = 0.4
 shader_parameter/speed = 1.0
 shader_parameter/beer_factor = 0.2
 shader_parameter/metallic = 0.6
@@ -51,8 +33,8 @@ shader_parameter/roughness = 0.2
 [sub_resource type="PlaneMesh" id="PlaneMesh_blwn6"]
 material = SubResource("ShaderMaterial_1pnir")
 size = Vector2(150, 150)
-subdivide_width = 75
-subdivide_depth = 75
+subdivide_width = 150
+subdivide_depth = 150
 
 [node name="Main" type="Node3D"]
 
@@ -60,7 +42,7 @@ subdivide_depth = 75
 environment = SubResource("Environment_k18kr")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48515, 43.2726, -11.3437)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48515, 50.2726, -11.3437)
 light_energy = 1000.0
 shadow_enabled = true
 omni_range = 50.0
@@ -69,18 +51,7 @@ omni_range = 50.0
 transform = Transform3D(0.604683, 0.62516, -0.493491, 0, 0.619601, 0.784917, 0.796467, -0.474626, 0.374662, 0, 8.8106, 0)
 visible = false
 
-[node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("BoxMesh_f70rp")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("ConvexPolygonShape3D_f0huf")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29809, 1.65601, 0)
-mesh = SubResource("BoxMesh_sbbik")
+[node name="Map" parent="." instance=ExtResource("6_hfbka")]
 
 [node name="Water" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
@@ -89,49 +60,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 mesh = SubResource("PlaneMesh_blwn6")
 
 [node name="Player" parent="." instance=ExtResource("1_vcvoh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02364, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.4023, 0)
 
 [node name="Tree" parent="." instance=ExtResource("3_hh85d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62432, 1.99449, -5.85325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62432, 8.51608, -5.85325)
 
 [node name="Wood" parent="." instance=ExtResource("4_uleg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7.77785, -4)
 
-[node name="Dialog" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_h44ja")
-
-[node name="ColorRect" type="ColorRect" parent="Dialog"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -200.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 0.784314)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Dialog"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -200.0
-grow_horizontal = 2
-grow_vertical = 0
-bbcode_enabled = true
-text = "asdasdasdasd"
-fit_content = true
-
-[node name="Timer" type="Timer" parent="Dialog"]
-wait_time = 0.05
-autostart = true
-
-[connection signal="timeout" from="Dialog/Timer" to="Dialog" method="_on_timer_timeout"]
+[node name="Note" parent="." instance=ExtResource("6_biadx")]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 3.08843, 9.32026, -6.04221)
+TEXT_ID = "n1t1"

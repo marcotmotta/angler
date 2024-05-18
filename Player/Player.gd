@@ -108,8 +108,12 @@ func _input(event):
 		if pick_up_object:
 			pick_up_object.pick_up(self)
 
-func add_item(item):
-	pass
+func add_item(item_type):
+	match item_type:
+		'note':
+			$UI/Note.open('quem leu eh gay')
+		'wood':
+			pass
 
 func _on_damage_timeout():
 	var light = get_parent().get_node("OmniLight3D")
