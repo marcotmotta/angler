@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=14 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b6mud5iaoeis" path="res://Items/Axe/Axe.tscn" id="2_38miw"]
@@ -69,6 +69,11 @@ font_size = 25
 outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_h4pne"]
+font_size = 20
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_4kyop"]
 font_color = Color(0, 0, 0, 1)
 
@@ -103,6 +108,9 @@ mesh = SubResource("1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_5mwwn")
 
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -2.5)
+
 [node name="Damage" type="Timer" parent="."]
 autostart = true
 
@@ -130,7 +138,7 @@ offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PickUpLabel" type="Label" parent="UI/Control"]
+[node name="PickUpOrDropLabel" type="Label" parent="UI/Control"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -148,6 +156,21 @@ text = "Press E
 Pick Up Wood"
 label_settings = SubResource("LabelSettings_88oej")
 horizontal_alignment = 1
+
+[node name="InventoryLabel" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -222.0
+offset_top = 20.0
+offset_right = -22.0
+offset_bottom = 48.0
+grow_horizontal = 0
+pivot_offset = Vector2(200, 0)
+text = "No item held"
+label_settings = SubResource("LabelSettings_h4pne")
+horizontal_alignment = 2
 
 [node name="Dialog" type="Control" parent="UI"]
 visible = false

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=12 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="Shader" path="res://Shaders/LowPolyWater.gdshader" id="2_s5ct0"]
 [ext_resource type="PackedScene" uid="uid://dbchv32r0lpfx" path="res://Items/Wood/Wood.tscn" id="4_uleg5"]
+[ext_resource type="PackedScene" uid="uid://btv6qhb72hs17" path="res://Items/Oil/Oil.tscn" id="6_6stld"]
 [ext_resource type="PackedScene" uid="uid://ks6v3dqyosw1" path="res://Items/Note/Note.tscn" id="6_biadx"]
 [ext_resource type="PackedScene" uid="uid://ce4oupxthxwyj" path="res://Assets/Map/Map.tscn" id="6_hfbka"]
 
@@ -51,7 +52,6 @@ omni_range = 22.0
 
 [node name="N2light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
-visible = false
 light_energy = 30.0
 light_specular = 0.0
 shadow_enabled = true
@@ -96,3 +96,6 @@ TEXT_ID = "n1t1"
 
 [node name="Wood" parent="." instance=ExtResource("4_uleg5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4205, 4.02611, 16.0426)
+
+[node name="Oil" parent="." instance=ExtResource("6_6stld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5959, 3.72832, 15.1015)

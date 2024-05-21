@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@onready var wood_scene = load("res://Items/Wood/Wood.tscn")
+@onready var oil_scene = load("res://Items/Oil/Oil.tscn")
+
 # Movement and camera parameters
 var SPEED = 1.5
 var JUMP_SPEED = 7
@@ -16,8 +19,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var MAX_HEALTH = 5
 var health = MAX_HEALTH
 
-# Pick up logic
-var pick_up_object = null
+# Pick up and drop logic
+var aimed_object = null
+
+# Inventory logic
+var item_held = ''
 
 # level
 var current_level = 1
@@ -29,18 +35,31 @@ func _ready():
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
 
-func _check_pick_up():
+func _check_pick_up_or_drop():
 	var collision_object = $Rotation_Helper/PickUpRay.get_collider()
+	
 	if collision_object is CollectibleComponent:
-		pick_up_object = collision_object
-		$UI/Control/PickUpLabel.text = 'Press E\nPick Up ' + collision_object.TYPE.capitalize()
-		$UI/Control/PickUpLabel.visible = true
+		aimed_object = collision_object
+		
+		$UI/Control/PickUpOrDropLabel.text = 'Press E\nPick Up ' + collision_object.TYPE.capitalize()
+		$UI/Control/PickUpOrDropLabel.visible = true
 		$UI/Control/ColorRect.color = 'red'
+		
+		return
+		
+	elif collision_object and collision_object.is_in_group("hole") and item_held:
+		aimed_object = collision_object
+		
+		$UI/Control/PickUpOrDropLabel.text = 'Press E\nDrop ' + item_held.capitalize()
+		$UI/Control/PickUpOrDropLabel.visible = true
+		$UI/Control/ColorRect.color = 'red'
+		
 		return
 
-	pick_up_object = {}
-	$UI/Control/PickUpLabel.text = ''
-	$UI/Control/PickUpLabel.visible = false
+	aimed_object = null
+	
+	$UI/Control/PickUpOrDropLabel.text = ''
+	$UI/Control/PickUpOrDropLabel.visible = false
 	$UI/Control/ColorRect.color = 'white'
 
 #FIXME: this functions shouldnt be here
@@ -51,7 +70,7 @@ func check_lights():
 		light.visible = (i+1 == current_level)
 
 func _process(delta):
-	_check_pick_up()
+	_check_pick_up_or_drop()
 
 func _physics_process(delta):
 	var camera_transform = camera.get_global_transform()
@@ -115,19 +134,40 @@ func _input(event):
 		$Rotation_Helper/Marker3D/Axe.action()
 
 	if Input.is_action_just_pressed("e"):
-		if pick_up_object:
-			pick_up_object.pick_up(self)
+		if aimed_object:
+			if aimed_object is CollectibleComponent:
+				if item_held and aimed_object.TYPE != 'note':
+					drop_item_held(get_node("Marker3D").global_position)
+				aimed_object.pick_up(self)
+			else:
+				drop_item_held(aimed_object.get_node("Marker3D").global_position)
 
 	if Input.is_action_just_pressed("f1"):
 		current_level = min(4, current_level + 1)
 		check_lights()
 
 func add_item(item_type):
-	match item_type:
+	if not item_held:
+		item_held = item_type
+		$UI/Control/InventoryLabel.text = "Holding: " + item_type.capitalize()
+
+func drop_item_held(spawn_pos):
+	var drop_instance = null
+	
+	match item_held:
 		'wood':
-			pass
+			drop_instance = wood_scene.instantiate()
 		'oil':
-			pass
+			drop_instance = oil_scene.instantiate()
+	
+	if drop_instance:
+		drop_instance.position = spawn_pos
+		drop_instance.rotation = Vector3(randi() * 45, randi() * 45, randi() * 45)
+		
+		get_parent().add_child(drop_instance)
+		
+		item_held = ''
+		$UI/Control/InventoryLabel.text = 'No item held'
 
 func show_note(text_id):
 	$UI/Note.open(Globals.notes[text_id])
