@@ -1,31 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=11 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="Shader" path="res://Shaders/LowPolyWater.gdshader" id="2_s5ct0"]
-[ext_resource type="PackedScene" uid="uid://dwonq6smq66e5" path="res://Assets/Tree/Tree.tscn" id="3_hh85d"]
 [ext_resource type="PackedScene" uid="uid://dbchv32r0lpfx" path="res://Items/Wood/Wood.tscn" id="4_uleg5"]
 [ext_resource type="PackedScene" uid="uid://ks6v3dqyosw1" path="res://Items/Note/Note.tscn" id="6_biadx"]
 [ext_resource type="PackedScene" uid="uid://ce4oupxthxwyj" path="res://Assets/Map/Map.tscn" id="6_hfbka"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_geko2"]
+[sub_resource type="Environment" id="Environment_x68d6"]
+background_mode = 1
 
-[sub_resource type="Sky" id="Sky_kbloi"]
-sky_material = SubResource("ProceduralSkyMaterial_geko2")
+[sub_resource type="SphereMesh" id="SphereMesh_wnn6p"]
+radius = 50.0
+height = 100.0
 
-[sub_resource type="Environment" id="Environment_k18kr"]
-background_mode = 2
-sky = SubResource("Sky_kbloi")
-tonemap_mode = 2
-glow_enabled = true
+[sub_resource type="MeshTexture" id="MeshTexture_v7lnn"]
+mesh = SubResource("SphereMesh_wnn6p")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1pnir"]
 render_priority = 0
 shader = ExtResource("2_s5ct0")
-shader_parameter/water_color = Color(0.2, 0.6, 0.8, 1)
+shader_parameter/water_color = Color(0.0327087, 0.20041, 0.281639, 1)
 shader_parameter/emission = Vector3(0, 0, 0)
 shader_parameter/height = 0.4
 shader_parameter/speed = 1.0
-shader_parameter/beer_factor = 0.2
+shader_parameter/beer_factor = 0.0
 shader_parameter/metallic = 0.6
 shader_parameter/specular = 0.5
 shader_parameter/roughness = 0.2
@@ -39,13 +37,44 @@ subdivide_depth = 150
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_k18kr")
+environment = SubResource("Environment_x68d6")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48515, 50.2726, -11.3437)
-light_energy = 1000.0
+[node name="N1light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+light_energy = 30.0
+light_projector = SubResource("MeshTexture_v7lnn")
+light_specular = 0.0
 shadow_enabled = true
-omni_range = 50.0
+shadow_opacity = 0.7
+shadow_blur = 0.0
+omni_range = 22.0
+
+[node name="N2light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+visible = false
+light_energy = 30.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.7
+omni_range = 33.0
+
+[node name="N3light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+visible = false
+light_energy = 30.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.7
+omni_range = 40.0
+
+[node name="N4light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+visible = false
+light_energy = 30.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_opacity = 0.7
+omni_range = 100.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.604683, 0.62516, -0.493491, 0, 0.619601, 0.784917, 0.796467, -0.474626, 0.374662, 0, 8.8106, 0)
@@ -54,20 +83,16 @@ visible = false
 [node name="Map" parent="." instance=ExtResource("6_hfbka")]
 
 [node name="Water" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Water"]
 mesh = SubResource("PlaneMesh_blwn6")
 
 [node name="Player" parent="." instance=ExtResource("1_vcvoh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.4023, 0)
-
-[node name="Tree" parent="." instance=ExtResource("3_hh85d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62432, 5.51626, -5.85325)
-
-[node name="Wood" parent="." instance=ExtResource("4_uleg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7.77785, -4)
+transform = Transform3D(0.960191, 0, -0.279343, 0, 1, 0, 0.279343, 0, 0.960191, 1.66214, 2.09525, 31.3748)
 
 [node name="Note" parent="." instance=ExtResource("6_biadx")]
-transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 3.08843, 9.32026, -6.04221)
+transform = Transform3D(0.942414, 0.334448, 0, -0.334448, 0.942414, 0, 0, 0, 1, 11.1894, 3.64045, 14.9914)
 TEXT_ID = "n1t1"
+
+[node name="Wood" parent="." instance=ExtResource("4_uleg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4205, 4.02611, 16.0426)

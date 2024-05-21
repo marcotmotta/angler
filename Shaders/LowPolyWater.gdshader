@@ -37,7 +37,7 @@ void vertex() {
 }
 
 void fragment() {
-	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+	//NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
 	METALLIC = metallic;
 	SPECULAR = specular;
 	ROUGHNESS = roughness;

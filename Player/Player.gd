@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 # Movement and camera parameters
-var SPEED = 3
+var SPEED = 1.5
 var JUMP_SPEED = 7
 
 var camera
@@ -18,6 +18,9 @@ var health = MAX_HEALTH
 
 # Pick up logic
 var pick_up_object = null
+
+# level
+var current_level = 1
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -39,6 +42,13 @@ func _check_pick_up():
 	$UI/Control/PickUpLabel.text = ''
 	$UI/Control/PickUpLabel.visible = false
 	$UI/Control/ColorRect.color = 'white'
+
+#FIXME: this functions shouldnt be here
+func check_lights():
+	var lights_array = ['N1light', 'N2light', 'N3light', 'N4light']
+	for i in range(lights_array.size()):
+		var light = get_parent().get_node(lights_array[i])
+		light.visible = (i+1 == current_level)
 
 func _process(delta):
 	_check_pick_up()
@@ -65,8 +75,8 @@ func _physics_process(delta):
 		$Rotation_Helper/CameraAnimation.play("stop", 0.1)
 
 	# Ground Velocity
-	velocity.x = direction.x * SPEED
-	velocity.z = direction.z * SPEED
+	velocity.x = direction.x * SPEED * (1.5 if Input.is_action_pressed('shift') else 1)
+	velocity.z = direction.z * SPEED * (1.5 if Input.is_action_pressed('shift') else 1)
 
 	# Moving the Character
 	move_and_slide()
@@ -108,15 +118,22 @@ func _input(event):
 		if pick_up_object:
 			pick_up_object.pick_up(self)
 
+	if Input.is_action_just_pressed("f1"):
+		current_level = min(4, current_level + 1)
+		check_lights()
+
 func add_item(item_type):
 	match item_type:
-		'note':
-			$UI/Note.open('quem leu eh gay')
 		'wood':
 			pass
+		'oil':
+			pass
+
+func show_note(text_id):
+	$UI/Note.open(Globals.notes[text_id])
 
 func _on_damage_timeout():
-	var light = get_parent().get_node("OmniLight3D")
+	var light = get_parent().get_node('N' + str(current_level) + 'light')
 	if (self.global_position - light.global_position).length() > light.omni_range:
 		health = max(0, health - 1)
 	else:

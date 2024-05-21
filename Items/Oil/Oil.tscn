@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://btv6qhb72hs17"]
+
+[ext_resource type="PackedScene" uid="uid://1c16c642xy43" path="res://Items/CollectibleComponent.tscn" id="1_442ix"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_016h5"]
+albedo_color = Color(0.140447, 0.140447, 0.140447, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6p7o0"]
+material = SubResource("StandardMaterial3D_016h5")
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o6cv7"]
+points = PackedVector3Array(0.15, 0.15, 0.15, 0.15, 0.15, -0.15, -0.15, 0.15, 0.15, 0.15, -0.15, 0.15, 0.15, -0.15, -0.15, -0.15, 0.15, -0.15, -0.15, -0.15, 0.15, -0.15, -0.15, -0.15)
+
+[node name="Oil" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6p7o0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_o6cv7")
+
+[node name="CollectibleComponent" parent="." instance=ExtResource("1_442ix")]
+TYPE = "oil"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectibleComponent"]
+shape = SubResource("ConvexPolygonShape3D_o6cv7")
