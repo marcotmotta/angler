@@ -78,6 +78,7 @@ outline_color = Color(0, 0, 0, 1)
 font_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 3
 script = ExtResource("1")
 
 [node name="Rotation_Helper" type="Node3D" parent="."]
@@ -109,7 +110,7 @@ mesh = SubResource("1")
 shape = SubResource("CapsuleShape3D_5mwwn")
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.532942, -0.989246)
 
 [node name="Damage" type="Timer" parent="."]
 autostart = true
@@ -173,6 +174,7 @@ label_settings = SubResource("LabelSettings_h4pne")
 horizontal_alignment = 2
 
 [node name="Dialog" type="Control" parent="UI"]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15

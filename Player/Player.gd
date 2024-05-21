@@ -119,16 +119,7 @@ func _input(event):
 
 	# Third person FIXME: debug purposes. there wont be third person in the game
 	if Input.is_action_just_pressed("f5"):
-		if first_person:
-			camera.position.y = 3
-			camera.position.z = 4
-			camera.rotation_degrees.x = -35
-			first_person = false
-		else:
-			camera.position.y = 0.6
-			camera.position.z = -0.3
-			camera.rotation_degrees.x = 0
-			first_person = true
+		start_dialog()
 
 	if Input.is_action_pressed("action1"):
 		$Rotation_Helper/Marker3D/Axe.action()
@@ -171,6 +162,16 @@ func drop_item_held(spawn_pos):
 
 func show_note(text_id):
 	$UI/Note.open(Globals.notes[text_id])
+
+func start_dialog():
+	# look at lighthouse
+	var lighthouse_pos = get_parent().get_node('LookPos').global_position
+	var rr_rotation = $Rotation_Helper.rotation
+	look_at(Vector3(lighthouse_pos.x, global_position.y, lighthouse_pos.z))
+	$Rotation_Helper.look_at(Vector3(get_parent().get_node('LookPos').global_position))
+
+	# show dialog
+	$UI/Dialog.show_next_dialog(true)
 
 func _on_damage_timeout():
 	var light = get_parent().get_node('N' + str(current_level) + 'light')

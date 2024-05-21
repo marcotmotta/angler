@@ -52,6 +52,7 @@ omni_range = 22.0
 
 [node name="N2light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+visible = false
 light_energy = 30.0
 light_specular = 0.0
 shadow_enabled = true
@@ -75,6 +76,9 @@ light_specular = 0.0
 shadow_enabled = true
 shadow_opacity = 0.7
 omni_range = 100.0
+
+[node name="LookPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 16, 20)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.604683, 0.62516, -0.493491, 0, 0.619601, 0.784917, 0.796467, -0.474626, 0.374662, 0, 8.8106, 0)
