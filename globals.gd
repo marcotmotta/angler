@@ -13,6 +13,9 @@ var dialogues = [
 	],
 	[
 		'hmmm madeira',
+	],
+	[
+		'hmmm, mais madeira',
 	]
 ]
 
@@ -24,11 +27,20 @@ var notes = {
 }
 
 var required_items = [
-	'wood',
-	'wood',
-	'oil',
-	'boar',
-	'blood'
+	{
+		'type': 'wood',
+		'amount': 2
+	},
+	{
+		'type': 'oil',
+		'amount': 1
+	},
+	{
+		'type': 'boar',
+		'amount': 1
+	},
+	{
+		'type': 'blood',
+		'amount': 1
+	}
 ]
-
-var curr_item_required = 0

@@ -52,6 +52,7 @@ environment = SubResource("Environment_x68d6")
 
 [node name="N1light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+visible = false
 light_energy = 30.0
 light_projector = SubResource("MeshTexture_v7lnn")
 light_specular = 0.0
@@ -80,6 +81,7 @@ omni_range = 40.0
 
 [node name="N4light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+visible = false
 light_energy = 30.0
 light_specular = 0.0
 shadow_enabled = true

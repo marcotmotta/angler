@@ -47,27 +47,27 @@ func _ready():
 
 func _check_pick_up_or_drop():
 	var collision_object = $Rotation_Helper/PickUpRay.get_collider()
-	
+
 	if collision_object is CollectibleComponent:
 		aimed_object = collision_object
-		
+
 		$UI/Control/PickUpOrDropLabel.text = 'Press E\nPick Up ' + collision_object.TYPE.capitalize()
 		$UI/Control/PickUpOrDropLabel.visible = true
 		$UI/Control/ColorRect.color = 'red'
-		
+
 		return
-		
+
 	elif collision_object and collision_object.is_in_group("hole") and item_held:
 		aimed_object = collision_object
-		
+
 		$UI/Control/PickUpOrDropLabel.text = 'Press E\nDrop ' + item_held.capitalize()
 		$UI/Control/PickUpOrDropLabel.visible = true
 		$UI/Control/ColorRect.color = 'red'
-		
+
 		return
 
 	aimed_object = null
-	
+
 	$UI/Control/PickUpOrDropLabel.text = ''
 	$UI/Control/PickUpOrDropLabel.visible = false
 	$UI/Control/ColorRect.color = 'white'
@@ -157,19 +157,19 @@ func add_item(item_type):
 
 func drop_item_held(spawn_pos):
 	var drop_instance = null
-	
+
 	match item_held:
 		'wood':
 			drop_instance = wood_scene.instantiate()
 		'oil':
 			drop_instance = oil_scene.instantiate()
-	
+
 	if drop_instance:
 		drop_instance.position = spawn_pos
 		drop_instance.rotation = Vector3(randi() * 45, randi() * 45, randi() * 45)
-		
+
 		get_parent().add_child(drop_instance)
-		
+
 		item_held = ''
 		$UI/Control/InventoryLabel.text = 'No item held'
 
@@ -209,8 +209,13 @@ func _on_damage_timeout():
 		print(health)
 
 func _on_item_was_dropped_in_the_hole(item_type):
-	if item_type == Globals.required_items[Globals.curr_item_required]:
+	if item_type == Globals.required_items[current_level - 1]['type']:
+		Globals.required_items[current_level - 1]['amount'] -= 1
 		start_dialog()
-		Globals.curr_item_required += 1
+
+		if Globals.required_items[current_level - 1]['amount'] == 0:
+			current_level = min(4, current_level + 1)
+			check_lights()
+
 	else:
 		start_dialog(true)
