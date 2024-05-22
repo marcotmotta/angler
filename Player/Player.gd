@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@onready var axe_scene = load("res://Items/Axe/Axe.tscn")
 @onready var wood_scene = load("res://Items/Wood/Wood.tscn")
 @onready var oil_scene = load("res://Items/Oil/Oil.tscn")
 
@@ -26,7 +27,10 @@ var aimed_object = null
 var item_held = ''
 
 # level
-var current_level = 1
+var current_level = 0
+
+# axe
+var has_axe = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -34,6 +38,10 @@ func _ready():
 	# Camera
 	camera = $Rotation_Helper/Camera
 	rotation_helper = $Rotation_Helper
+
+	# start game
+	$UI/Dialog.show_next_dialog(false)
+	get_parent().get_node('N1light').visible = true
 
 func _check_pick_up_or_drop():
 	var collision_object = $Rotation_Helper/PickUpRay.get_collider()
@@ -119,10 +127,13 @@ func _input(event):
 
 	# Third person FIXME: debug purposes. there wont be third person in the game
 	if Input.is_action_just_pressed("f5"):
-		start_dialog()
+		#start_dialog()
+		#get_axe()
+		pass
 
 	if Input.is_action_pressed("action1"):
-		$Rotation_Helper/Marker3D/Axe.action()
+		if has_axe:
+			$Rotation_Helper/Marker3D/Axe.action()
 
 	if Input.is_action_just_pressed("e"):
 		if aimed_object:
@@ -163,7 +174,7 @@ func drop_item_held(spawn_pos):
 func show_note(text_id):
 	$UI/Note.open(Globals.notes[text_id])
 
-func start_dialog():
+func start_dialog(is_wrong = false):
 	# look at lighthouse
 	var lighthouse_pos = get_parent().get_node('LookPos').global_position
 	var rr_rotation = $Rotation_Helper.rotation
@@ -171,13 +182,25 @@ func start_dialog():
 	$Rotation_Helper.look_at(Vector3(get_parent().get_node('LookPos').global_position))
 
 	# show dialog
-	$UI/Dialog.show_next_dialog(true)
+	$UI/Dialog.show_next_dialog(is_wrong)
+
+func _on_area_interaction_area_entered(area):
+	if area.is_in_group('start_n1'):
+		current_level = min(4, current_level + 1)
+		start_dialog()
+		area.queue_free()
+
+func get_axe():
+	var axe_instance = axe_scene.instantiate()
+	$Rotation_Helper/Marker3D.add_child(axe_instance)
+	has_axe = true
 
 func _on_damage_timeout():
-	var light = get_parent().get_node('N' + str(current_level) + 'light')
-	if (self.global_position - light.global_position).length() > light.omni_range:
-		health = max(0, health - 1)
-	else:
-		health = min(MAX_HEALTH, health + 1)
+	if current_level > 0:
+		var light = get_parent().get_node('N' + str(current_level) + 'light')
+		if (self.global_position - light.global_position).length() > light.omni_range:
+			health = max(0, health - 1)
+		else:
+			health = min(MAX_HEALTH, health + 1)
 
-	print(health)
+		print(health)

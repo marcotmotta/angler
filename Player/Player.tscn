@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=13 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://b6mud5iaoeis" path="res://Items/Axe/Axe.tscn" id="2_38miw"]
 [ext_resource type="Script" path="res://Dialog.gd" id="3_5sura"]
 [ext_resource type="Script" path="res://Player/NoteController.gd" id="4_oondp"]
 
@@ -101,8 +100,6 @@ collide_with_bodies = false
 [node name="Marker3D" type="Marker3D" parent="Rotation_Helper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.5, -1)
 
-[node name="Axe" parent="Rotation_Helper/Marker3D" instance=ExtResource("2_38miw")]
-
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 mesh = SubResource("1")
 
@@ -111,6 +108,12 @@ shape = SubResource("CapsuleShape3D_5mwwn")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.532942, -0.989246)
+
+[node name="AreaInteraction" type="Area3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaInteraction"]
+shape = SubResource("CapsuleShape3D_5mwwn")
 
 [node name="Damage" type="Timer" parent="."]
 autostart = true
@@ -277,6 +280,7 @@ offset_right = 827.0
 offset_bottom = 134.0
 text = "X"
 
+[connection signal="area_entered" from="AreaInteraction" to="." method="_on_area_interaction_area_entered"]
 [connection signal="timeout" from="Damage" to="." method="_on_damage_timeout"]
 [connection signal="timeout" from="UI/Dialog/Timer" to="UI/Dialog" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/Note/CloseNote" to="UI/Note" method="_on_close_note_pressed"]

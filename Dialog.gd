@@ -14,6 +14,7 @@ func show_next_dialog(is_wrong = false):
 		dialog = Globals.dialogue_aux
 	elif current_dialog < Globals.dialogues.size():
 		dialog = Globals.dialogues[current_dialog]
+		current_dialog += 1
 	else:
 		end_dialog()
 		return
@@ -40,7 +41,6 @@ func end_dialog():
 	visible = false
 	is_active = false
 	current_line = 0
-	current_dialog += 1
 	get_tree().paused = false
 
 func _on_timer_timeout():

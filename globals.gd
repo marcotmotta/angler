@@ -20,3 +20,11 @@ var notes = {
 	'n1t1': 'hi, this is my axe',
 	'n2t1': 'oh, no!'
 }
+
+var required_items = [
+	'wood',
+	'wood',
+	'oil',
+	'pig',
+	'blood'
+]

@@ -8,4 +8,4 @@ func action():
 func _on_area_entered(area):
 	if area is DestructibleComponent:
 		var destructible:DestructibleComponent = area
-		destructible.take_hit(50)
+		destructible.take_hit(1)

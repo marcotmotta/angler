@@ -8,6 +8,9 @@ class_name CollectibleComponent
 func pick_up(player: Object) -> void:
 	if TYPE == 'note':
 		player.show_note(get_parent().TEXT_ID)
+	elif TYPE == 'axe':
+		player.get_axe()
+		get_parent().queue_free()
 	else:
 		player.add_item(TYPE)
-	get_parent().queue_free()
+		get_parent().queue_free()

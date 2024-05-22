@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh6besffmdgy5"]
+
+[ext_resource type="PackedScene" uid="uid://3kqr7j2i44qu" path="res://Items/Door/Porta.glb" id="1_k35ij"]
+
+[node name="Porta" instance=ExtResource("1_k35ij")]

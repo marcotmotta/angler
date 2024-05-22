@@ -36,6 +36,7 @@ mesh = SubResource("BoxMesh_e3hx8")
 shape = SubResource("ConvexPolygonShape3D_3ra2i")
 
 [node name="DestructibleComponent" parent="." instance=ExtResource("2_4nfr8")]
+MAX_HEALTH = 3.0
 drop = ExtResource("2_6hjya")
 particle = ExtResource("3_exkgl")
 

@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=16 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="Shader" path="res://Shaders/LowPolyWater.gdshader" id="2_s5ct0"]
-[ext_resource type="PackedScene" uid="uid://dbchv32r0lpfx" path="res://Items/Wood/Wood.tscn" id="4_uleg5"]
-[ext_resource type="PackedScene" uid="uid://btv6qhb72hs17" path="res://Items/Oil/Oil.tscn" id="6_6stld"]
+[ext_resource type="PackedScene" uid="uid://dwonq6smq66e5" path="res://Assets/Tree/Tree.tscn" id="5_x4ls6"]
 [ext_resource type="PackedScene" uid="uid://ks6v3dqyosw1" path="res://Items/Note/Note.tscn" id="6_biadx"]
 [ext_resource type="PackedScene" uid="uid://ce4oupxthxwyj" path="res://Assets/Map/Map.tscn" id="6_hfbka"]
+[ext_resource type="ArrayMesh" uid="uid://nkynim3ufxf2" path="res://Items/Axe/AxeMesh.tres" id="6_njcno"]
+[ext_resource type="PackedScene" uid="uid://1c16c642xy43" path="res://Items/CollectibleComponent.tscn" id="7_kbu2h"]
+[ext_resource type="PackedScene" uid="uid://dvdqxpa7d0or" path="res://Items/Door/Door.tscn" id="8_iwnsi"]
 
 [sub_resource type="Environment" id="Environment_x68d6"]
 background_mode = 1
@@ -34,6 +36,13 @@ material = SubResource("ShaderMaterial_1pnir")
 size = Vector2(150, 150)
 subdivide_width = 150
 subdivide_depth = 150
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kp7oc"]
+height = 6.0
+radius = 8.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_703ea"]
+points = PackedVector3Array(-0.0157426, 0.586071, -0.310969, 0.034119, 0.785576, 0.162855, 0.0839976, 0.810572, 0.137902, 0.0590498, -0.760469, 0.137902, -0.090569, 0.810572, 0.137902, -0.0656212, -0.735316, 0.0131847, 0.034119, 0.785576, -0.286016, 0.0590498, -0.760469, 0.0131847, -0.0656212, -0.71032, 0.137902, -0.090569, 0.810572, -0.0366744, 0.0839976, 0.636064, -0.0616272, -0.0406904, 0.785576, -0.261064, 0.034119, 0.586071, -0.286016, 0.0839976, 0.835569, 0.0131847, -0.090569, 0.636064, -0.0366744, -0.0157426, 0.636064, 0.162855, -0.0406904, 0.636064, -0.261064, -0.0406904, -0.760469, 0.0131847, 0.0839976, 0.536234, 0.0630901, -0.0656212, -0.760469, 0.112949, -0.090569, 0.636064, 0.137902, 0.00915404, 0.586071, -0.310969, -0.0157426, 0.785576, -0.310969, 0.0839976, 0.810572, -0.0616272, 0.0590498, 0.660905, -0.186252, 0.0839976, 0.636064, 0.137902, 0.034119, 0.636064, 0.162855, -0.0406904, -0.760469, 0.137902, -0.0157426, 0.785576, 0.162855, 0.00915404, 0.785576, -0.310969, -0.0656212, -0.760469, 0.0381374, 0.0590498, 0.785576, -0.186252)
 
 [node name="Main" type="Node3D"]
 
@@ -95,11 +104,38 @@ mesh = SubResource("PlaneMesh_blwn6")
 transform = Transform3D(0.960191, 0, -0.279343, 0, 1, 0, 0.279343, 0, 0.960191, 1.66214, 2.09525, 31.3748)
 
 [node name="Note" parent="." instance=ExtResource("6_biadx")]
-transform = Transform3D(0.942414, 0.334448, 0, -0.334448, 0.942414, 0, 0, 0, 1, 11.1894, 3.64045, 14.9914)
+transform = Transform3D(0.942414, 0.334448, 0, -0.334448, 0.942414, 0, 0, 0, 1, 9.29082, 3.64045, 16.5259)
 TEXT_ID = "n1t1"
 
-[node name="Wood" parent="." instance=ExtResource("4_uleg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4205, 4.02611, 16.0426)
+[node name="Tree" parent="." instance=ExtResource("5_x4ls6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3303, 4.47446, 15.0743)
 
-[node name="Oil" parent="." instance=ExtResource("6_6stld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5959, 3.72832, 15.1015)
+[node name="Tree2" parent="." instance=ExtResource("5_x4ls6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.08799, 4.34599, 20.6835)
+
+[node name="StartN1" type="Area3D" parent="." groups=["start_n1"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.153, 0, 20)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartN1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88723, 0, -3.59267)
+shape = SubResource("CylinderShape3D_kp7oc")
+
+[node name="AxeBody" type="RigidBody3D" parent="."]
+transform = Transform3D(0.800606, 0.599191, 0, -0.599191, 0.800606, 0, 0, 0, 1, 14, 4, 17)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AxeBody"]
+mesh = ExtResource("6_njcno")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AxeBody"]
+shape = SubResource("ConvexPolygonShape3D_703ea")
+
+[node name="CollectibleComponent" parent="AxeBody" instance=ExtResource("7_kbu2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+TYPE = "axe"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AxeBody/CollectibleComponent"]
+shape = SubResource("ConvexPolygonShape3D_703ea")
+
+[node name="Door" parent="." instance=ExtResource("8_iwnsi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3693, 3.0018, 15.7737)
