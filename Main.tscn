@@ -1,15 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=17 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="Shader" path="res://Shaders/LowPolyWater.gdshader" id="2_s5ct0"]
-[ext_resource type="PackedScene" uid="uid://dwonq6smq66e5" path="res://Assets/Tree/Tree.tscn" id="5_x4ls6"]
+[ext_resource type="PackedScene" uid="uid://dwonq6smq66e5" path="res://Assets/Tree/TreeA.tscn" id="5_x4ls6"]
 [ext_resource type="PackedScene" uid="uid://ks6v3dqyosw1" path="res://Items/Note/Note.tscn" id="6_biadx"]
 [ext_resource type="PackedScene" uid="uid://ce4oupxthxwyj" path="res://Assets/Map/Map.tscn" id="6_hfbka"]
 [ext_resource type="ArrayMesh" uid="uid://nkynim3ufxf2" path="res://Items/Axe/AxeMesh.tres" id="6_njcno"]
 [ext_resource type="PackedScene" uid="uid://1c16c642xy43" path="res://Items/CollectibleComponent.tscn" id="7_kbu2h"]
-[ext_resource type="PackedScene" uid="uid://dvdqxpa7d0or" path="res://Items/Door/Door.tscn" id="8_iwnsi"]
 [ext_resource type="PackedScene" uid="uid://btv6qhb72hs17" path="res://Items/Oil/Oil.tscn" id="9_ite20"]
-[ext_resource type="PackedScene" uid="uid://6wol43iaxesx" path="res://Assets/Hog/BoarAlive.tscn" id="10_uic8o"]
+[ext_resource type="PackedScene" uid="uid://b8lnhhjgvx8qw" path="res://Assets/Tree/TreeB.tscn" id="11_ow83r"]
 
 [sub_resource type="Environment" id="Environment_x68d6"]
 background_mode = 1
@@ -53,40 +52,44 @@ environment = SubResource("Environment_x68d6")
 
 [node name="N1light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
-light_energy = 30.0
+light_energy = 50.0
 light_projector = SubResource("MeshTexture_v7lnn")
 light_specular = 0.0
 shadow_enabled = true
-shadow_opacity = 0.7
+shadow_opacity = 0.3
 shadow_blur = 0.0
 omni_range = 22.0
 
 [node name="N2light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
-light_energy = 30.0
+visible = false
+light_energy = 60.0
 light_specular = 0.0
 shadow_enabled = true
-shadow_opacity = 0.7
+shadow_opacity = 0.3
 omni_range = 33.0
 
 [node name="N3light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
-light_energy = 30.0
+visible = false
+light_energy = 80.0
 light_specular = 0.0
 shadow_enabled = true
-shadow_opacity = 0.7
+shadow_opacity = 0.3
 omni_range = 40.0
 
 [node name="N4light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
-light_energy = 30.0
+visible = false
+light_energy = 80.0
 light_specular = 0.0
 shadow_enabled = true
-shadow_opacity = 0.7
+shadow_opacity = 0.3
 omni_range = 100.0
 
 [node name="LookPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 16, 20)
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.604683, 0.62516, -0.493491, 0, 0.619601, 0.784917, 0.796467, -0.474626, 0.374662, 0, 8.8106, 0)
@@ -103,14 +106,8 @@ mesh = SubResource("PlaneMesh_blwn6")
 transform = Transform3D(0.960191, 0, -0.279343, 0, 1, 0, 0.279343, 0, 0.960191, 1.66214, 2.09525, 31.3748)
 
 [node name="Note" parent="." instance=ExtResource("6_biadx")]
-transform = Transform3D(0.942414, 0.334448, 0, -0.334448, 0.942414, 0, 0, 0, 1, 9.29082, 2.64045, 15.5259)
+transform = Transform3D(0.11477, 0.04073, 0.992557, -0.334448, 0.942414, 1.49012e-08, -0.935399, -0.331959, 0.121783, 9.78139, 2.64045, 16.0409)
 TEXT_ID = "n1t1"
-
-[node name="Tree" parent="." instance=ExtResource("5_x4ls6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3303, 4.47446, 15.0743)
-
-[node name="Tree2" parent="." instance=ExtResource("5_x4ls6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.08799, 4.34599, 20.6835)
 
 [node name="StartN1" type="Area3D" parent="." groups=["start_n1"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.153, 0, 20)
@@ -121,31 +118,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88723, 0, -3.59267)
 shape = SubResource("CylinderShape3D_kp7oc")
 
 [node name="AxeBody" type="RigidBody3D" parent="."]
-transform = Transform3D(0.800606, 0.599191, 0, -0.599191, 0.800606, 0, 0, 0, 1, 14, 4, 17)
+transform = Transform3D(0.214195, -0.907823, -0.360525, 0.949766, 0.279783, -0.140237, 0.228179, -0.312376, 0.922147, 11.85, 2.97939, 17.0156)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AxeBody"]
+transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("6_njcno")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AxeBody"]
+transform = Transform3D(1, -3.72529e-08, 0, 3.72529e-09, 1, 0, 1.49012e-08, -2.98023e-08, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_703ea")
 
 [node name="CollectibleComponent" parent="AxeBody" instance=ExtResource("7_kbu2h")]
 TYPE = "axe"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AxeBody/CollectibleComponent"]
+transform = Transform3D(1, -3.72529e-08, 0, 3.72529e-09, 1, 0, 1.49012e-08, -2.98023e-08, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_703ea")
 
-[node name="Door" parent="." instance=ExtResource("8_iwnsi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3693, 4.3671, 15.7737)
-
-[node name="Oil" parent="." instance=ExtResource("9_ite20")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.61283, 4.02913, 18.4483)
-
-[node name="JavaliVivo" parent="." instance=ExtResource("10_uic8o")]
-transform = Transform3D(0.375885, 0, 0.926666, 0, 1, 0, -0.926666, 0, 0.375885, 6.42664, 2.4072, 14.3977)
-
 [node name="Oil2" parent="." instance=ExtResource("9_ite20")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0643, 1.65805, -1.18133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0643, 1.61487, -1.18133)
+
+[node name="Oil5" parent="." instance=ExtResource("9_ite20")]
+transform = Transform3D(-0.324416, 0.790183, 0.519966, 0.92507, 0.379795, -2.43624e-08, -0.197481, 0.481006, -0.854187, 15.9428, 1.88188, -0.470283)
+
+[node name="Oil4" parent="." instance=ExtResource("9_ite20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6741, 2.79947, 2.29572)
 
 [node name="Oil3" parent="." instance=ExtResource("9_ite20")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5304, 1.63424, 0.857891)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5304, 1.49409, 0.857891)
+
+[node name="TreeA" parent="." instance=ExtResource("5_x4ls6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55937, 4, 16.0473)
+
+[node name="TreeA2" parent="." instance=ExtResource("5_x4ls6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.419, 3.5, 23.93)
+
+[node name="TreeB" parent="." instance=ExtResource("11_ow83r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50149, 4.56238, 20.021)
+
+[node name="TreeA3" parent="." instance=ExtResource("5_x4ls6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.829, 4, -8.539)
+
+[node name="TreeA4" parent="." instance=ExtResource("5_x4ls6")]
+transform = Transform3D(-0.0344111, 0, -0.999408, 0, 1, 0, 0.999408, 0, -0.0344111, -0.065, 3.74568, 3.269)
+
+[node name="TreeB2" parent="." instance=ExtResource("11_ow83r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2329, 5.51142, 9.56526)
+
+[node name="TreeB3" parent="." instance=ExtResource("11_ow83r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0387, 4.52816, -7.15922)
