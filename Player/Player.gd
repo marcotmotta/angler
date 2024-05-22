@@ -28,6 +28,7 @@ var item_held = ''
 
 # level
 var current_level = 0
+var can_blood_sacrifice = false
 
 # axe
 var has_axe = false
@@ -44,30 +45,32 @@ func _ready():
 	get_parent().get_node('N1light').visible = true
 
 	Globals.on_item_was_dropped_in_the_hole.connect(_on_item_was_dropped_in_the_hole)
+	Globals.on_player_can_blood_sacrifice.connect(_on_player_can_blood_sacrifice)
 
 func _check_pick_up_or_drop():
 	var collision_object = $Rotation_Helper/PickUpRay.get_collider()
 
 	if collision_object is CollectibleComponent:
 		aimed_object = collision_object
-
 		$UI/Control/PickUpOrDropLabel.text = 'Press E\nPick Up ' + collision_object.TYPE.capitalize()
 		$UI/Control/PickUpOrDropLabel.visible = true
 		$UI/Control/ColorRect.color = 'red'
-
 		return
 
-	elif collision_object and collision_object.is_in_group("hole") and item_held:
+	elif collision_object and collision_object.is_in_group("hole"):
 		aimed_object = collision_object
-
-		$UI/Control/PickUpOrDropLabel.text = 'Press E\nDrop ' + item_held.capitalize()
-		$UI/Control/PickUpOrDropLabel.visible = true
-		$UI/Control/ColorRect.color = 'red'
-
-		return
+		if can_blood_sacrifice:
+			$UI/Control/PickUpOrDropLabel.text = 'Press E\nGive Blood'
+			$UI/Control/PickUpOrDropLabel.visible = true
+			$UI/Control/ColorRect.color = 'red'
+			return
+		elif item_held:
+			$UI/Control/PickUpOrDropLabel.text = 'Press E\nDrop ' + item_held.capitalize()
+			$UI/Control/PickUpOrDropLabel.visible = true
+			$UI/Control/ColorRect.color = 'red'
+			return
 
 	aimed_object = null
-
 	$UI/Control/PickUpOrDropLabel.text = ''
 	$UI/Control/PickUpOrDropLabel.visible = false
 	$UI/Control/ColorRect.color = 'white'
@@ -77,7 +80,7 @@ func check_lights():
 	var lights_array = ['N1light', 'N2light', 'N3light', 'N4light']
 	for i in range(lights_array.size()):
 		var light = get_parent().get_node(lights_array[i])
-		light.visible = (i+1 == current_level)
+		light.visible = (i + 1 == current_level)
 
 func _process(delta):
 	_check_pick_up_or_drop()
@@ -92,7 +95,6 @@ func _physics_process(delta):
 			velocity.y = JUMP_SPEED
 
 	var direction = Vector3.ZERO
-	
 	var input_dir = Input.get_vector("a", "d", "s", "w")
 	direction += -camera_transform.basis.z.normalized() * input_dir.y
 	direction += camera_transform.basis.x.normalized() * input_dir.x
@@ -144,7 +146,10 @@ func _input(event):
 					drop_item_held(get_node("Marker3D").global_position)
 				aimed_object.pick_up(self)
 			else:
-				drop_item_held(aimed_object.get_node("Marker3D").global_position)
+				if can_blood_sacrifice:
+					pass # TODO.
+				else:
+					drop_item_held(aimed_object.get_node("Marker3D").global_position)
 
 	if Input.is_action_just_pressed("f1"):
 		current_level = min(4, current_level + 1)
@@ -219,3 +224,9 @@ func _on_item_was_dropped_in_the_hole(item_type):
 
 	else:
 		start_dialog(true)
+
+func _on_player_can_blood_sacrifice():
+	print('_on_player_can_blood_sacrifice')
+	print(Globals.required_items[current_level - 1]['type'])
+	if Globals.required_items[current_level - 1]['type'] == 'blood':
+		can_blood_sacrifice = true

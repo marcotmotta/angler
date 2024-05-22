@@ -1,6 +1,7 @@
 extends Node
 
 signal on_item_was_dropped_in_the_hole(item_type)
+signal on_player_can_blood_sacrifice()
 
 var dialogues = [
 	[
