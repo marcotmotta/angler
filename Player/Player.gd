@@ -43,6 +43,8 @@ func _ready():
 	$UI/Dialog.show_next_dialog(false)
 	get_parent().get_node('N1light').visible = true
 
+	Globals.on_item_was_dropped_in_the_hole.connect(_on_item_was_dropped_in_the_hole)
+
 func _check_pick_up_or_drop():
 	var collision_object = $Rotation_Helper/PickUpRay.get_collider()
 	
@@ -175,11 +177,12 @@ func show_note(text_id):
 	$UI/Note.open(Globals.notes[text_id])
 
 func start_dialog(is_wrong = false):
-	# look at lighthouse
 	var lighthouse_pos = get_parent().get_node('LookPos').global_position
 	var rr_rotation = $Rotation_Helper.rotation
+
+	# look at lighthouse
 	look_at(Vector3(lighthouse_pos.x, global_position.y, lighthouse_pos.z))
-	$Rotation_Helper.look_at(Vector3(get_parent().get_node('LookPos').global_position))
+	$Rotation_Helper.look_at(lighthouse_pos)
 
 	# show dialog
 	$UI/Dialog.show_next_dialog(is_wrong)
@@ -204,3 +207,10 @@ func _on_damage_timeout():
 			health = min(MAX_HEALTH, health + 1)
 
 		print(health)
+
+func _on_item_was_dropped_in_the_hole(item_type):
+	if item_type == Globals.required_items[Globals.curr_item_required]:
+		start_dialog()
+		Globals.curr_item_required += 1
+	else:
+		start_dialog(true)

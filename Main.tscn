@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=17 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="Shader" path="res://Shaders/LowPolyWater.gdshader" id="2_s5ct0"]
@@ -8,6 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://nkynim3ufxf2" path="res://Items/Axe/AxeMesh.tres" id="6_njcno"]
 [ext_resource type="PackedScene" uid="uid://1c16c642xy43" path="res://Items/CollectibleComponent.tscn" id="7_kbu2h"]
 [ext_resource type="PackedScene" uid="uid://dvdqxpa7d0or" path="res://Items/Door/Door.tscn" id="8_iwnsi"]
+[ext_resource type="PackedScene" uid="uid://btv6qhb72hs17" path="res://Items/Oil/Oil.tscn" id="9_ite20"]
 
 [sub_resource type="Environment" id="Environment_x68d6"]
 background_mode = 1
@@ -131,7 +132,6 @@ mesh = ExtResource("6_njcno")
 shape = SubResource("ConvexPolygonShape3D_703ea")
 
 [node name="CollectibleComponent" parent="AxeBody" instance=ExtResource("7_kbu2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 TYPE = "axe"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AxeBody/CollectibleComponent"]
@@ -139,3 +139,6 @@ shape = SubResource("ConvexPolygonShape3D_703ea")
 
 [node name="Door" parent="." instance=ExtResource("8_iwnsi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3693, 3.0018, 15.7737)
+
+[node name="Oil" parent="." instance=ExtResource("9_ite20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.61283, 4.02913, 18.4483)

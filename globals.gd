@@ -1,5 +1,7 @@
 extends Node
 
+signal on_item_was_dropped_in_the_hole(item_type)
+
 var dialogues = [
 	[
 		'FEED ME...',
@@ -25,6 +27,8 @@ var required_items = [
 	'wood',
 	'wood',
 	'oil',
-	'pig',
+	'boar',
 	'blood'
 ]
+
+var curr_item_required = 0
