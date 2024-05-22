@@ -25,6 +25,6 @@ func take_hit(amount: float) -> void:
 		if drop:
 			var drop_instance = drop.instantiate()
 			drop_instance.position = global_position
-			drop_instance.rotation = Vector3(randi()*45, randi()*45, randi()*45)
+			drop_instance.rotation = get_parent().rotation
 			get_parent().get_parent().add_child(drop_instance)
 		get_parent().queue_free()

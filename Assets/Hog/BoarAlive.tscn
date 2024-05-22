@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://6wol43iaxesx"]
+
+[ext_resource type="PackedScene" uid="uid://bpjsxvjiutdpu" path="res://Assets/Hog/javali_vivo.tscn" id="1_8su6m"]
+[ext_resource type="PackedScene" uid="uid://bktpeofomw12f" path="res://Assets/DestructibleComponent.tscn" id="2_qxyij"]
+[ext_resource type="PackedScene" uid="uid://cmaxtimv34w2x" path="res://Assets/Tree/TreeParticles.tscn" id="3_ib45i"]
+[ext_resource type="PackedScene" uid="uid://c78tebh21f27h" path="res://Assets/Hog/BoarDead.tscn" id="3_ji7dr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wxth3"]
+size = Vector3(1.03809, 0.919922, 2.24219)
+
+[node name="JavaliVivo" type="StaticBody3D"]
+
+[node name="javali_vivo" parent="." instance=ExtResource("1_8su6m")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352616, 0)
+shape = SubResource("BoxShape3D_wxth3")
+
+[node name="DestructibleComponent" parent="." instance=ExtResource("2_qxyij")]
+MAX_HEALTH = 4.0
+drop = ExtResource("3_ji7dr")
+particle = ExtResource("3_ib45i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DestructibleComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352616, 0)
+shape = SubResource("BoxShape3D_wxth3")

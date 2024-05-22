@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c78tebh21f27h"]
+
+[ext_resource type="PackedScene" uid="uid://bsgwx0bskamch" path="res://Assets/Hog/javali_morto.tscn" id="1_gdncc"]
+[ext_resource type="PackedScene" uid="uid://1c16c642xy43" path="res://Items/CollectibleComponent.tscn" id="2_nvjfx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t27w5"]
+size = Vector3(1.03809, 0.919922, 2.24219)
+
+[node name="JavaliMorto" type="StaticBody3D"]
+
+[node name="javali-morto" parent="." instance=ExtResource("1_gdncc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352616, 0)
+shape = SubResource("BoxShape3D_t27w5")
+
+[node name="CollectibleComponent" parent="." instance=ExtResource("2_nvjfx")]
+TYPE = "boar guts"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectibleComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352616, 0)
+shape = SubResource("BoxShape3D_t27w5")

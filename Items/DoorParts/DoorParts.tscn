@@ -405,21 +405,20 @@ size = Vector3(0.246094, 0.917969, 0.104492)
 [node name="DoorParts" type="Node3D"]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.109927)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.0710101, -1.6571, -0.116048)
 collision_layer = 4
 mass = 0.1
 
 [node name="lasca-porta-9" type="MeshInstance3D" parent="RigidBody3D"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.79501, 2.67745, 0)
 mesh = SubResource("ArrayMesh_vn8o5")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.47032, 2.38986, 0.16121)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.361727, 2.26991, 0.16121)
 shape = SubResource("BoxShape3D_ieyhw")
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.297403, 0.391108, 0)
+transform = Transform3D(0.983944, 0.00700694, 0.178338, 0, 0.999229, -0.0392598, -0.178476, 0.0386295, 0.983186, 0.455048, -1.31475, 0)
 mass = 0.1
 
 [node name="lasca-porta-6" type="MeshInstance3D" parent="RigidBody3D4"]
@@ -430,8 +429,20 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0486445, 0.930791, 0.129312)
 shape = SubResource("BoxShape3D_l3bb1")
 
+[node name="RigidBody3D9" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397772, -1.31475, 0)
+mass = 0.1
+
+[node name="lasca-porta-6" type="MeshInstance3D" parent="RigidBody3D9"]
+mesh = SubResource("ArrayMesh_52oas")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0486445, 0.930791, 0.129312)
+shape = SubResource("BoxShape3D_l3bb1")
+
 [node name="RigidBody3D5" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.536215, 0)
+transform = Transform3D(0.995527, 0, 0.0944732, 0, 1, 0, -0.0944732, 0, 0.995527, 0.157645, -1.73888, 0)
 mass = 0.1
 
 [node name="lasca-porta-5" type="MeshInstance3D" parent="RigidBody3D5"]
@@ -443,7 +454,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120721, 2.14774, 0.0759214
 shape = SubResource("BoxShape3D_xhkjl")
 
 [node name="RigidBody3D6" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352553, -0.536215, 0.436718)
+transform = Transform3D(0.995209, 0, -0.097774, 0, 1, 0, 0.097774, 0, 0.995209, 0.263785, -1.59634, -0.0661535)
 mass = 0.1
 
 [node name="lasca-porta-4" type="MeshInstance3D" parent="RigidBody3D6"]
@@ -455,22 +466,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235769, 2.14774, 0.0759214)
 shape = SubResource("BoxShape3D_8amj6")
 
 [node name="RigidBody3D7" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658752, 0, -0.361856)
+transform = Transform3D(0.981293, 0, -0.192522, 0, 1, 0, 0.192522, 0, 0.981293, -0.323647, -2.9755, -0.265822)
 mass = 0.1
 
 [node name="lasca-porta-3" type="MeshInstance3D" parent="RigidBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.520198, -0.303674, 0.336555)
 mesh = SubResource("ArrayMesh_id1qg")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.614599, 2.63703, 0.0759214)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119531, 2.4175, 0.443504)
 shape = SubResource("BoxShape3D_v6m5y")
 
 [node name="RigidBody3D8" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.166462, 0.537179, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00881702, -0.665488, 0)
 mass = 0.1
 
 [node name="lasca-porta-2" type="MeshInstance3D" parent="RigidBody3D8"]
+transform = Transform3D(0.980881, 0.0155974, -0.193985, -9.18652e-11, 0.996783, 0.0801467, 0.194611, -0.0786144, 0.977725, 0, 0, 0.133022)
 mesh = SubResource("ArrayMesh_fjxqc")
 skeleton = NodePath("")
 
