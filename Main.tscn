@@ -80,7 +80,6 @@ omni_range = 40.0
 
 [node name="N4light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
-visible = false
 light_energy = 30.0
 light_specular = 0.0
 shadow_enabled = true
@@ -138,7 +137,7 @@ TYPE = "axe"
 shape = SubResource("ConvexPolygonShape3D_703ea")
 
 [node name="Door" parent="." instance=ExtResource("8_iwnsi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3693, 3.0018, 15.7737)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3693, 4.3671, 15.7737)
 
 [node name="Oil" parent="." instance=ExtResource("9_ite20")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.61283, 4.02913, 18.4483)

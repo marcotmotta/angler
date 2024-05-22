@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=14 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://Dialog.gd" id="3_5sura"]
@@ -57,7 +57,11 @@ _data = {
 "stop": SubResource("Animation_ko56m")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7wsn"]
+shadow_to_opacity = true
+
 [sub_resource type="CapsuleMesh" id="1"]
+material = SubResource("StandardMaterial3D_c7wsn")
 height = 1.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5mwwn"]

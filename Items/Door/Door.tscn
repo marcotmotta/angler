@@ -96,22 +96,23 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_tfr2o")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qr04d"]
-points = PackedVector3Array(0.862939, 1.08404, 0.201012, -0.719143, -0.0188723, -0.0386722, 0.767041, 3.04957, -0.0386722, -0.719143, 3.04957, 0.153059, 0.81491, -0.0188723, -0.0386722, -0.767172, 0.844353, 0.248994, 0.81491, 2.37827, 0.248994, -0.719143, 3.04957, -0.0386722, 0.81491, -0.0188723, 0.153059, -0.719143, -0.0188723, 0.153059, -0.767172, 2.37827, 0.248994, 0.81491, 0.844353, 0.248994, 0.767041, 3.04957, 0.153059, 0.81491, 0.604668, -0.0386722)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ch21k"]
+size = Vector3(1.4, 3, 0.4)
 
 [node name="Door" type="StaticBody3D"]
 
 [node name="porta" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 mesh = SubResource("ArrayMesh_3p0ei")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_qr04d")
+shape = SubResource("BoxShape3D_ch21k")
 
 [node name="DestructibleComponent" parent="." instance=ExtResource("1_86wko")]
-MAX_HEALTH = 3.0
+MAX_HEALTH = 4.0
 drop = ExtResource("2_e8c23")
 particle = ExtResource("2_ksnw1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DestructibleComponent"]
-shape = SubResource("ConvexPolygonShape3D_qr04d")
+shape = SubResource("BoxShape3D_ch21k")
