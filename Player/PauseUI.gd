@@ -17,15 +17,15 @@ func pause_game():
 	get_tree().paused = true
 	self.visible = true
 	# delete existing note buttons
-	for child in $Notes.get_children():
+	for child in $CenterContainer/Notes.get_children():
 		child.queue_free()
 	# add new note buttons
 	for text_id in Globals.notes.keys():
 		var note_button_instance = note_button_scene.instantiate()
 		note_button_instance.text_id = text_id
-		note_button_instance.text = Globals.notes[text_id].text if Globals.notes[text_id].taken else '???'
+		note_button_instance.text = Globals.notes[text_id].title if Globals.notes[text_id].taken else '?????'
 		note_button_instance.disabled = not Globals.notes[text_id].taken
-		$Notes.add_child(note_button_instance)
+		$CenterContainer/Notes.add_child(note_button_instance)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func unpause_game():

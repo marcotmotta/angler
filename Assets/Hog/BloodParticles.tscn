@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dip3edfaq8qmv"]
+
+[ext_resource type="Script" path="res://Assets/Hog/BloodParticles.gd" id="1_732u7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vw7ge"]
+albedo_color = Color(0.68, 0, 0.158667, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_745dh"]
+material = SubResource("StandardMaterial3D_vw7ge")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Curve" id="Curve_wwm2a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.452527), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="BloodParticles" type="CPUParticles3D"]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 0.7
+mesh = SubResource("SphereMesh_745dh")
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.8, 0.5)
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+scale_amount_curve = SubResource("Curve_wwm2a")
+script = ExtResource("1_732u7")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

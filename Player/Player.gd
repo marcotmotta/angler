@@ -62,28 +62,32 @@ func _check_pick_up_or_drop():
 
 	if collision_object is CollectibleComponent:
 		aimed_object = collision_object
-		$UI/Control/PickUpOrDropLabel.text = 'Press E\nPick Up ' + collision_object.TYPE.capitalize()
+		$UI/Control/PickUpOrDropLabel.text = 'Pick Up: ' + collision_object.TYPE.capitalize()
 		$UI/Control/PickUpOrDropLabel.visible = true
-		$UI/Control/ColorRect.color = 'red'
+		$UI/Control/PressE.visible = true
+		$UI/Control/Aim.label_settings.font_color = 'ff4854'
 		return
 
 	elif collision_object and collision_object.is_in_group("hole"):
 		aimed_object = collision_object
 		if can_blood_sacrifice:
-			$UI/Control/PickUpOrDropLabel.text = 'Press E\nGive Blood'
+			$UI/Control/PickUpOrDropLabel.text = 'Give Blood'
 			$UI/Control/PickUpOrDropLabel.visible = true
-			$UI/Control/ColorRect.color = 'red'
+			$UI/Control/PressE.visible = true
+			$UI/Control/Aim.label_settings.font_color = 'ff4854'
 			return
 		elif item_held:
-			$UI/Control/PickUpOrDropLabel.text = 'Press E\nDrop ' + item_held.capitalize()
+			$UI/Control/PickUpOrDropLabel.text = 'Give Item: ' + item_held.capitalize()
 			$UI/Control/PickUpOrDropLabel.visible = true
-			$UI/Control/ColorRect.color = 'red'
+			$UI/Control/PressE.visible = true
+			$UI/Control/Aim.label_settings.font_color = 'ff4854'
 			return
 
 	aimed_object = null
 	$UI/Control/PickUpOrDropLabel.text = ''
 	$UI/Control/PickUpOrDropLabel.visible = false
-	$UI/Control/ColorRect.color = 'white'
+	$UI/Control/PressE.visible = false
+	$UI/Control/Aim.label_settings.font_color = 'white'
 
 #FIXME: this functions shouldnt be here
 func check_lights():

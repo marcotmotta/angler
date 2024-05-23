@@ -38,6 +38,8 @@ content_margin_bottom = 10.0
 bg_color = Color(0.197937, 0.197937, 0.197937, 0.941176)
 
 [node name="NoteButton" type="Button"]
+offset_right = 450.0
+offset_bottom = 58.6895
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_constants/h_separation = 15

@@ -24,8 +24,8 @@ var dialogue_aux = ['The Lighthouse:\n\nvtnc']
 
 var notes = {
 	'n1t1': {
-		'title': 'Note 1',
-		'text': 'hi, this is my axe',
+		'title': 'Nota 1 - Signs of previous human stay',
+		'text': 'This story is older than\nit looks. This lighthouse has\nbeen here for centuries, other\npeople lived here in some way\nwe don`t understand\ntotally. That old shack\nholds some secret.',
 		'taken': false
 	},
 	'n2t1': {

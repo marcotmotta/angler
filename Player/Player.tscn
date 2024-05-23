@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=25 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://Dialog.gd" id="3_5sura"]
@@ -74,8 +74,16 @@ height = 1.7
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5mwwn"]
 height = 1.7
 
+[sub_resource type="LabelSettings" id="LabelSettings_pimc4"]
+font = ExtResource("3_sca2o")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_88oej"]
-font_size = 25
+font = ExtResource("3_sca2o")
+font_size = 20
+font_color = Color(1, 0.282353, 0.329412, 1)
 outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
@@ -90,6 +98,32 @@ font = ExtResource("3_sca2o")
 font_size = 25
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q7vf"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.941176)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hncy7"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.941176)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_hl4t1"]
 font = ExtResource("3_sca2o")
@@ -154,19 +188,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+[node name="Aim" type="Label" parent="UI/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -2.5
-offset_top = -2.5
-offset_right = 2.5
-offset_bottom = 2.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "+"
+label_settings = SubResource("LabelSettings_pimc4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PressE" type="Sprite2D" parent="UI/Control"]
+visible = false
+position = Vector2(575, 400)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_hm50v")
 
 [node name="PickUpOrDropLabel" type="Label" parent="UI/Control"]
 visible = false
@@ -177,13 +221,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -125.0
-offset_top = 36.0
+offset_top = 116.0
 offset_right = 125.0
-offset_bottom = 85.0
+offset_bottom = 165.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press E
-Pick Up Wood"
+text = "Pick Up: Wood"
 label_settings = SubResource("LabelSettings_88oej")
 horizontal_alignment = 1
 
@@ -305,19 +348,42 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.901961)
 
-[node name="Notes" type="GridContainer" parent="UI/PauseUI"]
+[node name="CenterContainer" type="CenterContainer" parent="UI/PauseUI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -161.0
+offset_left = -432.0
 offset_top = 40.0
-offset_right = 161.0
-offset_bottom = 117.0
+offset_right = 432.0
+offset_bottom = 163.0
 grow_horizontal = 2
-theme_override_constants/h_separation = 15
-theme_override_constants/v_separation = 15
+
+[node name="Notes" type="GridContainer" parent="UI/PauseUI/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 2
+
+[node name="Button" type="Button" parent="UI/PauseUI/CenterContainer/Notes"]
+layout_mode = 2
+text = "asdsadasdsadsasdfsdfdsfsdf"
+
+[node name="Button2" type="Button" parent="UI/PauseUI/CenterContainer/Notes"]
+layout_mode = 2
+text = "asdsadasdsadsaasdsadasdasdasdasd"
+
+[node name="Button3" type="Button" parent="UI/PauseUI/CenterContainer/Notes"]
+layout_mode = 2
+text = "asdsadasdsadsa"
+
+[node name="Button4" type="Button" parent="UI/PauseUI/CenterContainer/Notes"]
+layout_mode = 2
+text = "asdsadasdsadsaasdasdsadasdasdasdsadsadasdsad"
+
+[node name="Button5" type="Button" parent="UI/PauseUI/CenterContainer/Notes"]
+layout_mode = 2
+text = "asdsadasdsadsa"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/PauseUI"]
 layout_mode = 1
@@ -332,13 +398,24 @@ offset_right = 94.5
 offset_bottom = -108.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 15
 
 [node name="Continue" type="Button" parent="UI/PauseUI/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_sca2o")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_8q7vf")
 text = "Continue"
 
 [node name="Exit" type="Button" parent="UI/PauseUI/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_sca2o")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_hncy7")
 text = "Exit to Menu"
 
 [node name="Note" type="Control" parent="UI"]
