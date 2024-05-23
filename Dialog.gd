@@ -22,6 +22,8 @@ func show_next_dialog(is_wrong = false):
 	$Label.set_visible_characters(0)
 	$Label.set_process_input(true)
 	is_active = true
+	$AudioStreamPlayer1.play()
+	$AudioStreamPlayer2.play()
 
 func _input(event):
 	if Input.is_action_just_pressed("e") and is_active:
@@ -32,7 +34,7 @@ func _input(event):
 				$Label.text = dialog[current_line]
 			else:
 				end_dialog()
-
+			$AudioStreamPlayer2.play()
 		else:
 			$Label.set_visible_characters($Label.get_total_character_count())
 
@@ -43,6 +45,9 @@ func end_dialog():
 	get_tree().paused = false
 	if current_dialog == 1:
 		$Background.visible = false
+	$AudioStreamPlayer1.stop()
 
 func _on_timer_timeout():
 	$Label.set_visible_characters($Label.get_visible_characters() + 1)
+	if $Label.get_visible_characters() > $Label.get_total_character_count():
+		$AudioStreamPlayer2.stop()

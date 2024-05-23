@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyypborcy8ty0"]
+[gd_scene load_steps=6 format=3 uid="uid://dyypborcy8ty0"]
 
 [ext_resource type="Script" path="res://Final.gd" id="1_mvavm"]
 [ext_resource type="FontFile" uid="uid://ccyx16lbv20bt" path="res://UI/veteran typewriter.ttf" id="1_mxi1k"]
 [ext_resource type="AudioStream" uid="uid://xun0axi7ilwn" path="res://Sounds/LighthouseAmbienceSound.wav" id="3_bto6t"]
+[ext_resource type="AudioStream" uid="uid://djnyxgp5oxscf" path="res://Sounds/LighthouseVoiceSound.mp3" id="4_qgx1k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xowjx"]
 font = ExtResource("1_mxi1k")
@@ -68,8 +69,13 @@ autostart = true
 wait_time = 5.0
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bto6t")
+volume_db = -5.0
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qgx1k")
 autoplay = true
 
 [connection signal="timeout" from="DialogTimer" to="." method="_on_dialog_timer_timeout"]

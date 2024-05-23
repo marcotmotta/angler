@@ -3,4 +3,7 @@
 [ext_resource type="Script" path="res://Sounds/SoundHandler.gd" id="1_xfcde"]
 
 [node name="SoundHandler" type="AudioStreamPlayer"]
+process_mode = 3
 script = ExtResource("1_xfcde")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

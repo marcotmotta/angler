@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var cutscenes_manager_scene = load("res://Cutscene/CutscenesManager.tscn")
+@onready var sound_handler_scene = load("res://Sounds/SoundHandler.tscn")
 
 @onready var axe_scene = load("res://Items/Axe/Axe.tscn")
 
@@ -118,8 +119,14 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		$Rotation_Helper/CameraAnimation.play("camera_walk", 1)
+		if $Walk.is_stopped():
+			var sound_handler_node = sound_handler_scene.instantiate()
+			get_tree().root.add_child(sound_handler_node)
+			sound_handler_node.play_sound(2)
+			$Walk.start()
 	else:
 		$Rotation_Helper/CameraAnimation.play("stop", 0.1)
+		$Walk.stop()
 
 	# Ground Velocity
 	velocity.x = direction.x * SPEED * (1.5 if Input.is_action_pressed('shift') else 1)
@@ -138,12 +145,6 @@ func _input(event):
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_helper.rotation_degrees = camera_rot
 
-	# Third person FIXME: debug purposes. there wont be third person in the game
-	if Input.is_action_just_pressed("f5"):
-		#start_dialog()
-		#get_axe()
-		pass
-
 	if Input.is_action_pressed("action1"):
 		if has_axe:
 			$Rotation_Helper/Marker3D/Axe.action()
@@ -159,10 +160,6 @@ func _input(event):
 					play_final_cutscene()
 				else:
 					drop_item_held(aimed_object.get_node("Marker3D").global_position)
-
-	if Input.is_action_just_pressed("f1"):
-		current_level = min(4, current_level + 1)
-		check_lights()
 
 func add_item(item_type):
 	if not item_held:
@@ -223,6 +220,12 @@ func _on_damage_timeout():
 			health = min(MAX_HEALTH, health + 1)
 			$UI/DeathUI.update_borders(health)
 
+func _on_walk_timeout():
+	var sound_handler_node = sound_handler_scene.instantiate()
+
+	get_tree().root.add_child(sound_handler_node)
+	sound_handler_node.play_sound(2)
+	
 func _on_item_was_dropped_in_the_hole(item_type):
 	if item_type == Globals.required_items[current_level - 1]['type']:
 		Globals.required_items[current_level - 1]['amount'] -= 1
