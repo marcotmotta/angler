@@ -18,24 +18,23 @@ func show_next_dialog(is_wrong = false):
 	else:
 		end_dialog()
 		return
-	$RichTextLabel.text = dialog[current_line]
-	$RichTextLabel.set_visible_characters(0)
-	$RichTextLabel.set_process_input(true)
-	current_line += 1
+	$Label.text = dialog[current_line]
+	$Label.set_visible_characters(0)
+	$Label.set_process_input(true)
 	is_active = true
 
 func _input(event):
 	if Input.is_action_just_pressed("e") and is_active:
-		if $RichTextLabel.get_visible_characters() > $RichTextLabel.get_total_character_count():
+		if $Label.get_visible_characters() > $Label.get_total_character_count():
 			if current_line < dialog.size() - 1:
-				$RichTextLabel.set_visible_characters(0)
+				$Label.set_visible_characters(0)
 				current_line += 1
-				$RichTextLabel.text = dialog[current_line]
+				$Label.text = dialog[current_line]
 			else:
 				end_dialog()
 
 		else:
-			$RichTextLabel.set_visible_characters($RichTextLabel.get_total_character_count())
+			$Label.set_visible_characters($Label.get_total_character_count())
 
 func end_dialog():
 	visible = false
@@ -44,4 +43,4 @@ func end_dialog():
 	get_tree().paused = false
 
 func _on_timer_timeout():
-	$RichTextLabel.set_visible_characters($RichTextLabel.get_visible_characters() + 1)
+	$Label.set_visible_characters($Label.get_visible_characters() + 1)

@@ -1,8 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=22 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://Dialog.gd" id="3_5sura"]
+[ext_resource type="FontFile" uid="uid://ccyx16lbv20bt" path="res://UI/veteran typewriter.ttf" id="3_sca2o"]
+[ext_resource type="Texture2D" uid="uid://btil75bvsercs" path="res://UI/PRESS-E-UI.png" id="4_hm50v"]
+[ext_resource type="Script" path="res://Player/PauseUI.gd" id="4_mfawr"]
 [ext_resource type="Script" path="res://Player/NoteController.gd" id="4_oondp"]
+[ext_resource type="Texture2D" uid="uid://cjdq32faosqu5" path="res://UI/LETTER-BG.png" id="4_ttcas"]
+[ext_resource type="Texture2D" uid="uid://p4fi1dwrdjq" path="res://UI/X-BUTTON.png" id="5_u8xiy"]
+[ext_resource type="Texture2D" uid="uid://0q8yclyv6bja" path="res://UI/X-BUTTON-2.png" id="6_7gy77"]
 
 [sub_resource type="Animation" id="Animation_83a77"]
 length = 0.001
@@ -73,11 +79,26 @@ outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_h4pne"]
-font_size = 20
+font = ExtResource("3_sca2o")
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ifnqv"]
+font = ExtResource("3_sca2o")
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hl4t1"]
+font = ExtResource("3_sca2o")
+font_size = 35
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4kyop"]
+font = ExtResource("3_sca2o")
+font_size = 25
 font_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
@@ -203,9 +224,9 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0, 0, 0, 0.784314)
+color = Color(0, 0, 0, 0.901961)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Dialog"]
+[node name="Label" type="Label" parent="UI/Dialog"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -217,13 +238,78 @@ offset_right = -40.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-bbcode_enabled = true
-text = "asd asdsad asdsadsa addas"
-fit_content = true
+text = "The Lighthouse:
+
+asd asdsad asdsadsa addas asdad
+asd asdsad asdsadsa addas asdad
+asd asdsad asdsadsa addas asdad
+"
+label_settings = SubResource("LabelSettings_ifnqv")
 
 [node name="Timer" type="Timer" parent="UI/Dialog"]
 wait_time = 0.05
 autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Dialog"]
+position = Vector2(992, 604)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_hm50v")
+
+[node name="PauseUI" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_mfawr")
+
+[node name="Background" type="ColorRect" parent="UI/PauseUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.901961)
+
+[node name="Notes" type="GridContainer" parent="UI/PauseUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -161.0
+offset_top = 40.0
+offset_right = 161.0
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PauseUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.5
+offset_top = -148.0
+offset_right = 94.5
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Continue" type="Button" parent="UI/PauseUI/HBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="Exit" type="Button" parent="UI/PauseUI/HBoxContainer"]
+layout_mode = 2
+text = "Exit to Menu"
 
 [node name="Note" type="Control" parent="UI"]
 process_mode = 3
@@ -243,22 +329,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
+color = Color(0, 0, 0, 0.901961)
 
-[node name="NotePaper" type="ColorRect" parent="UI/Note"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.687448, 0.438038, 1)
+[node name="Sprite2D" type="Sprite2D" parent="UI/Note"]
+position = Vector2(575, 325)
+scale = Vector2(0.533172, 0.533172)
+texture = ExtResource("4_ttcas")
+
+[node name="Title" type="Label" parent="UI/Note"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 35.0
+offset_right = 860.0
+offset_bottom = 70.0
+text = "Signs of previous human stay"
+label_settings = SubResource("LabelSettings_hl4t1")
 
 [node name="Label" type="Label" parent="UI/Note"]
 layout_mode = 1
@@ -268,23 +353,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Olá,
-
 Eu sou uma carta topper
-
 Quem leu é gay"
 label_settings = SubResource("LabelSettings_4kyop")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CloseNote" type="Button" parent="UI/Note"]
+[node name="CloseNote" type="TextureButton" parent="UI/Note"]
 layout_mode = 0
-offset_left = 767.0
-offset_top = 74.0
-offset_right = 827.0
-offset_bottom = 134.0
-text = "X"
+offset_left = 814.0
+offset_top = 83.0
+offset_right = 906.0
+offset_bottom = 177.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("5_u8xiy")
+texture_pressed = ExtResource("6_7gy77")
+texture_hover = ExtResource("6_7gy77")
+texture_disabled = ExtResource("5_u8xiy")
+texture_focused = ExtResource("6_7gy77")
 
 [connection signal="area_entered" from="AreaInteraction" to="." method="_on_area_interaction_area_entered"]
 [connection signal="timeout" from="Damage" to="." method="_on_damage_timeout"]
 [connection signal="timeout" from="UI/Dialog/Timer" to="UI/Dialog" method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/PauseUI/HBoxContainer/Continue" to="UI/PauseUI" method="_on_continue_pressed"]
+[connection signal="pressed" from="UI/PauseUI/HBoxContainer/Exit" to="UI/PauseUI" method="_on_exit_pressed"]
 [connection signal="pressed" from="UI/Note/CloseNote" to="UI/Note" method="_on_close_note_pressed"]

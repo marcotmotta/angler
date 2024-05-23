@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2yagr7ehu1l"]
+
+[ext_resource type="FontFile" uid="uid://ccyx16lbv20bt" path="res://UI/veteran typewriter.ttf" id="1_3cxca"]
+[ext_resource type="Script" path="res://UI/NoteButton.gd" id="1_uqi8r"]
+[ext_resource type="Texture2D" uid="uid://cjdq32faosqu5" path="res://UI/LETTER-BG.png" id="2_5ibwj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hj8n"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.941176)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.748667, 0.48, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duqqk"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.158472, 0.158472, 0.158472, 0.941176)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.74902, 0.478431, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wefbc"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.197937, 0.197937, 0.197937, 0.941176)
+
+[node name="NoteButton" type="Button"]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 15
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("1_3cxca")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_3hj8n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_duqqk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wefbc")
+text = "Note 1 - quem leu eh gay"
+icon = ExtResource("2_5ibwj")
+script = ExtResource("1_uqi8r")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

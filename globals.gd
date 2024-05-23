@@ -5,26 +5,39 @@ signal on_player_can_blood_sacrifice()
 
 var dialogues = [
 	[
-		'FEED ME...',
+		'The Lighthouse:\n\nFEED ME...',
 	],
 	[
-		'hi, im the lighthouse-san',
-		'i wan smoothies',
-		'toma aki 10 reais e vai comprar uma coca zero pro pai'
+		'The Lighthouse:\n\nhi, im the lighthouse-san',
+		'The Lighthouse:\n\ni wan smoothies',
+		'The Lighthouse:\n\ntoma aki 10 reais e vai comprar uma coca zero pro pai'
 	],
 	[
-		'hmmm madeira',
+		'The Lighthouse:\n\nhmmm madeira',
 	],
 	[
-		'hmmm, mais madeira',
+		'The Lighthouse:\n\nhmmm, mais madeira',
 	]
 ]
 
-var dialogue_aux = ['vtnc']
+var dialogue_aux = ['The Lighthouse:\n\nvtnc']
 
 var notes = {
-	'n1t1': 'hi, this is my axe',
-	'n2t1': 'oh, no!'
+	'n1t1': {
+		'title': 'Note 1',
+		'text': 'hi, this is my axe',
+		'taken': false
+	},
+	'n2t1': {
+		'title': 'Note 2',
+		'text': 'oh no!',
+		'taken': false
+	},
+	'n2t2': {
+		'title': 'Note 3',
+		'text': 'fodac',
+		'taken': false
+	}
 }
 
 var required_items = [

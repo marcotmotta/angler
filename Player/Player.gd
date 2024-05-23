@@ -122,13 +122,6 @@ func _input(event):
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_helper.rotation_degrees = camera_rot
 
-	# Capturing/Freeing the cursor
-	if Input.is_action_just_pressed("esc"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
 	# Third person FIXME: debug purposes. there wont be third person in the game
 	if Input.is_action_just_pressed("f5"):
 		#start_dialog()
@@ -179,7 +172,7 @@ func drop_item_held(spawn_pos):
 		$UI/Control/InventoryLabel.text = 'No item held'
 
 func show_note(text_id):
-	$UI/Note.open(Globals.notes[text_id])
+	$UI/Note.open(text_id)
 
 func start_dialog(is_wrong = false):
 	var lighthouse_pos = get_parent().get_node('LookPos').global_position
