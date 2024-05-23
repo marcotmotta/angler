@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyypborcy8ty0"]
+
+[ext_resource type="Script" path="res://Final.gd" id="1_mvavm"]
+[ext_resource type="FontFile" uid="uid://ccyx16lbv20bt" path="res://UI/veteran typewriter.ttf" id="1_mxi1k"]
+[ext_resource type="AudioStream" uid="uid://xun0axi7ilwn" path="res://Sounds/LighthouseAmbienceSound.wav" id="3_bto6t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xowjx"]
+font = ExtResource("1_mxi1k")
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Final" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mvavm")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DialogBox" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -220.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(1, 1, 1, 0.1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -210.0
+offset_right = -40.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "The Lighthouse:
+
+FEEED MEEEE
+"
+label_settings = SubResource("LabelSettings_xowjx")
+
+[node name="DialogTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="ExitTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bto6t")
+autoplay = true
+
+[connection signal="timeout" from="DialogTimer" to="." method="_on_dialog_timer_timeout"]
+[connection signal="timeout" from="ExitTimer" to="." method="_on_exit_timer_timeout"]

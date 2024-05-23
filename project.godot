@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="nautical"
-run/main_scene="res://Main.tscn"
+config/name="Bagre"
+run/main_scene="res://Menu/Menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 

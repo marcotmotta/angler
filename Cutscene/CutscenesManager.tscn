@@ -11,12 +11,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4hxon")
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ratio = 1.7778
 
-[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="AspectRatioContainer"]
+layout_mode = 2
+expand = true
+
+[connection signal="finished" from="AspectRatioContainer/VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

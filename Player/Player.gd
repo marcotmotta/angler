@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var cutscenes_manager_scene = load("res://Cutscene/CutscenesManager.tscn")
+
 @onready var axe_scene = load("res://Items/Axe/Axe.tscn")
 
 @onready var items_scenes = {
@@ -154,7 +156,7 @@ func _input(event):
 				aimed_object.pick_up(self)
 			else:
 				if can_blood_sacrifice:
-					pass # TODO.
+					play_final_cutscene()
 				else:
 					drop_item_held(aimed_object.get_node("Marker3D").global_position)
 
@@ -192,6 +194,13 @@ func start_dialog(is_wrong = false):
 
 	# show dialog
 	$UI/Dialog.show_next_dialog(is_wrong)
+
+func play_final_cutscene():
+	var cutscenes_manager_node = cutscenes_manager_scene.instantiate()
+
+	get_tree().root.add_child(cutscenes_manager_node)
+	cutscenes_manager_node.play_cutscene(1)
+	get_parent().queue_free()
 
 func _on_area_interaction_area_entered(area):
 	if area.is_in_group('start_n1'):
