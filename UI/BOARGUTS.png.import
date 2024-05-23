@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr51yoi4m4wao"
-path="res://.godot/imported/OIL.png-09189acf5b79995bbd0db67bc75d9845.ctex"
+uid="uid://dpfkxpejccb3o"
+path="res://.godot/imported/BOARGUTS.png-215454f5c8f0747cd7121b5741cb5650.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/OIL.png"
-dest_files=["res://.godot/imported/OIL.png-09189acf5b79995bbd0db67bc75d9845.ctex"]
+source_file="res://UI/BOARGUTS.png"
+dest_files=["res://.godot/imported/BOARGUTS.png-215454f5c8f0747cd7121b5741cb5650.ctex"]
 
 [params]
 

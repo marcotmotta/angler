@@ -46,11 +46,11 @@ var required_items = [
 		'amount': 2
 	},
 	{
-		'type': 'oil',
+		'type': 'oil barrel',
 		'amount': 1
 	},
 	{
-		'type': 'boar',
+		'type': 'boar guts',
 		'amount': 1
 	},
 	{

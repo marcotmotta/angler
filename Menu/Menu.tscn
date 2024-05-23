@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgscrfxtbr26b"]
+
+[ext_resource type="Texture2D" uid="uid://dm1h3jvxhy5vs" path="res://UI/BG-START.png" id="1_g4ogh"]
+[ext_resource type="Script" path="res://Menu/Menu.gd" id="1_ptqlo"]
+[ext_resource type="Texture2D" uid="uid://hhlly5qxpcli" path="res://UI/PLAY-BUTTON.png" id="2_63gek"]
+[ext_resource type="Texture2D" uid="uid://ufyml3g6tgyw" path="res://UI/PLAY-BUTTON-2.png" id="3_rqx44"]
+[ext_resource type="Texture2D" uid="uid://bg2akyvyu3vy" path="res://UI/EXIT-BUTTON.png" id="4_apixh"]
+[ext_resource type="Texture2D" uid="uid://bcdbui3xokcj0" path="res://UI/EXIT-BUTTON-2.png" id="5_vtdxj"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ptqlo")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g4ogh")
+expand_mode = 3
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.5
+offset_top = 75.5
+offset_right = 276.5
+offset_bottom = 246.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="TextureButton" parent="ButtonsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_63gek")
+texture_hover = ExtResource("3_rqx44")
+
+[node name="ExitButton" type="TextureButton" parent="ButtonsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_apixh")
+texture_hover = ExtResource("5_vtdxj")
+
+[connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,8 +1,18 @@
 extends CharacterBody3D
 
 @onready var axe_scene = load("res://Items/Axe/Axe.tscn")
-@onready var wood_scene = load("res://Items/Wood/Wood.tscn")
-@onready var oil_scene = load("res://Items/Oil/Oil.tscn")
+
+@onready var items_scenes = {
+	'wood': load("res://Items/Wood/Wood.tscn"),
+	'oil barrel': load("res://Items/Oil/Oil.tscn"),
+	'boar guts':  load("res://Items/BoarGuts/BoarGuts.tscn")
+}
+
+@onready var items_icons = {
+	'wood': load("res://UI/WOOD.png"),
+	'oil barrel': load("res://UI/OILBARREL.png"),
+	'boar guts': load("res://UI/BOARGUTS.png")
+}
 
 # Movement and camera parameters
 var SPEED = 1.5
@@ -152,31 +162,25 @@ func add_item(item_type):
 	if not item_held:
 		item_held = item_type
 		$UI/Control/InventoryLabel.text = "Holding: " + item_type.capitalize()
+		$UI/Control/InventorySlot/Item.texture = items_icons[item_type]
 
 func drop_item_held(spawn_pos):
-	var drop_instance = null
+	var drop_instance = items_scenes[item_held].instantiate()
 
-	match item_held:
-		'wood':
-			drop_instance = wood_scene.instantiate()
-		'oil':
-			drop_instance = oil_scene.instantiate()
+	drop_instance.position = spawn_pos
+	drop_instance.rotation = Vector3(randi() * 45, randi() * 45, randi() * 45)
 
-	if drop_instance:
-		drop_instance.position = spawn_pos
-		drop_instance.rotation = Vector3(randi() * 45, randi() * 45, randi() * 45)
+	get_parent().add_child(drop_instance)
 
-		get_parent().add_child(drop_instance)
-
-		item_held = ''
-		$UI/Control/InventoryLabel.text = 'No item held'
+	item_held = ''
+	$UI/Control/InventoryLabel.text = 'No item held'
+	$UI/Control/InventorySlot/Item.texture = null
 
 func show_note(text_id):
 	$UI/Note.open(text_id)
 
 func start_dialog(is_wrong = false):
 	var lighthouse_pos = get_parent().get_node('LookPos').global_position
-	var rr_rotation = $Rotation_Helper.rotation
 
 	# look at lighthouse
 	look_at(Vector3(lighthouse_pos.x, global_position.y, lighthouse_pos.z))
@@ -219,7 +223,5 @@ func _on_item_was_dropped_in_the_hole(item_type):
 		start_dialog(true)
 
 func _on_player_can_blood_sacrifice():
-	print('_on_player_can_blood_sacrifice')
-	print(Globals.required_items[current_level - 1]['type'])
 	if Globals.required_items[current_level - 1]['type'] == 'blood':
 		can_blood_sacrifice = true

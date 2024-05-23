@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpfkxpejccb3o"
-path="res://.godot/imported/TRIP.png-4507597daef7e69c3aa83d1795f67d53.ctex"
+uid="uid://cr51yoi4m4wao"
+path="res://.godot/imported/OILBARREL.png-01b091fe8c3ebcf26be2cdaa0ca60234.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/TRIP.png"
-dest_files=["res://.godot/imported/TRIP.png-4507597daef7e69c3aa83d1795f67d53.ctex"]
+source_file="res://UI/OILBARREL.png"
+dest_files=["res://.godot/imported/OILBARREL.png-01b091fe8c3ebcf26be2cdaa0ca60234.ctex"]
 
 [params]
 

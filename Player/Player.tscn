@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://4bpysmfyaucd"]
+[gd_scene load_steps=23 format=3 uid="uid://4bpysmfyaucd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://Dialog.gd" id="3_5sura"]
+[ext_resource type="Texture2D" uid="uid://cxowqoeg1xs1q" path="res://UI/EMPTY.png" id="3_81nmg"]
 [ext_resource type="FontFile" uid="uid://ccyx16lbv20bt" path="res://UI/veteran typewriter.ttf" id="3_sca2o"]
 [ext_resource type="Texture2D" uid="uid://btil75bvsercs" path="res://UI/PRESS-E-UI.png" id="4_hm50v"]
 [ext_resource type="Script" path="res://Player/PauseUI.gd" id="4_mfawr"]
@@ -200,6 +201,35 @@ pivot_offset = Vector2(200, 0)
 text = "No item held"
 label_settings = SubResource("LabelSettings_h4pne")
 horizontal_alignment = 2
+
+[node name="InventorySlot" type="TextureRect" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -97.0
+offset_top = 60.0
+offset_right = -17.0
+offset_bottom = 140.0
+grow_horizontal = 0
+pivot_offset = Vector2(60, 0)
+texture = ExtResource("3_81nmg")
+expand_mode = 3
+
+[node name="Item" type="TextureRect" parent="UI/Control/InventorySlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
 
 [node name="Dialog" type="Control" parent="UI"]
 process_mode = 3
