@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=22 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="Shader" path="res://Shaders/LowPolyWater.gdshader" id="2_s5ct0"]
@@ -47,6 +47,20 @@ radius = 8.0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_703ea"]
 points = PackedVector3Array(-0.0157426, 0.586071, -0.310969, 0.034119, 0.785576, 0.162855, 0.0839976, 0.810572, 0.137902, 0.0590498, -0.760469, 0.137902, -0.090569, 0.810572, 0.137902, -0.0656212, -0.735316, 0.0131847, 0.034119, 0.785576, -0.286016, 0.0590498, -0.760469, 0.0131847, -0.0656212, -0.71032, 0.137902, -0.090569, 0.810572, -0.0366744, 0.0839976, 0.636064, -0.0616272, -0.0406904, 0.785576, -0.261064, 0.034119, 0.586071, -0.286016, 0.0839976, 0.835569, 0.0131847, -0.090569, 0.636064, -0.0366744, -0.0157426, 0.636064, 0.162855, -0.0406904, 0.636064, -0.261064, -0.0406904, -0.760469, 0.0131847, 0.0839976, 0.536234, 0.0630901, -0.0656212, -0.760469, 0.112949, -0.090569, 0.636064, 0.137902, 0.00915404, 0.586071, -0.310969, -0.0157426, 0.785576, -0.310969, 0.0839976, 0.810572, -0.0616272, 0.0590498, 0.660905, -0.186252, 0.0839976, 0.636064, 0.137902, 0.034119, 0.636064, 0.162855, -0.0406904, -0.760469, 0.137902, -0.0157426, 0.785576, 0.162855, 0.00915404, 0.785576, -0.310969, -0.0656212, -0.760469, 0.0381374, 0.0590498, 0.785576, -0.186252)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ax4ry"]
+blend_mode = 3
+shading_mode = 0
+albedo_color = Color(0, 0.0941176, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0jf7i"]
+material = SubResource("StandardMaterial3D_ax4ry")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="Curve" id="Curve_dl8ug"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -74,7 +88,6 @@ omni_range = 33.0
 
 [node name="N3light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
-visible = false
 light_energy = 60.0
 light_specular = 0.0
 shadow_enabled = true
@@ -83,6 +96,7 @@ omni_range = 40.0
 
 [node name="N4light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+visible = false
 light_energy = 60.0
 light_specular = 0.0
 shadow_enabled = true
@@ -107,15 +121,15 @@ transform = Transform3D(0.11477, 0.04073, 0.992557, -0.334448, 0.942414, 1.49012
 TEXT_ID = "n1"
 
 [node name="Note2" parent="." instance=ExtResource("6_biadx")]
-transform = Transform3D(-0.181306, -0.0643429, 0.98132, -0.334448, 0.942414, 1.13146e-08, -0.924809, -0.328201, -0.192385, 1.29618, 2.64045, 11.6856)
+transform = Transform3D(-0.181306, -0.0643429, 0.98132, -0.334448, 0.942414, 1.13146e-08, -0.924809, -0.328201, -0.192385, 6.61864, 2.26355, 10.6856)
 TEXT_ID = "n2"
 
 [node name="Note3" parent="." instance=ExtResource("6_biadx")]
-transform = Transform3D(0.612537, 0.21738, 0.759964, 0.368622, 0.771933, -0.517916, -0.699225, 0.597382, 0.392707, 3.00292, 2.64045, 7.5813)
+transform = Transform3D(0.466107, -0.0355615, 0.884014, 0.173826, 0.983398, -0.0520918, -0.867484, 0.177945, 0.46455, 11.9547, 3.06633, 4.44968)
 TEXT_ID = "n3"
 
 [node name="Note4" parent="." instance=ExtResource("6_biadx")]
-transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, -4.40321, 2.80608, 10.8593)
+transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, -4.58696, 2.80608, 10.673)
 TEXT_ID = "n4"
 
 [node name="Note5" parent="." instance=ExtResource("6_biadx")]
@@ -123,11 +137,11 @@ transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.22
 TEXT_ID = "n5"
 
 [node name="Note6" parent="." instance=ExtResource("6_biadx")]
-transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, 13.8006, 2.98539, -6.87531)
+transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, 9.06948, 2.98539, -6.97357)
 TEXT_ID = "n6"
 
 [node name="Note7" parent="." instance=ExtResource("6_biadx")]
-transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, 20.4091, 3.4151, -8.92461)
+transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, 20.9643, 3.51893, -8.22118)
 TEXT_ID = "n7"
 
 [node name="Note8" parent="." instance=ExtResource("6_biadx")]
@@ -198,3 +212,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0387, 4.52816, -7.15922)
 
 [node name="JavaliVivo" parent="." instance=ExtResource("10_5gk7b")]
 transform = Transform3D(0.202039, -0.00447594, 0.979367, 0.0892354, 0.995914, -0.0138573, -0.975304, 0.090194, 0.201613, 9.05429, 2.1221, -11.8439)
+
+[node name="HoleParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9347, 1.84273, 20.9496)
+amount = 50
+lifetime = 4.0
+mesh = SubResource("SphereMesh_0jf7i")
+emission_shape = 3
+emission_box_extents = Vector3(2, 0.1, 2)
+gravity = Vector3(0, 1, 0)
+scale_amount_curve = SubResource("Curve_dl8ug")

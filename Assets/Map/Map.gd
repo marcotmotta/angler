@@ -1,5 +1,8 @@
 extends StaticBody3D
 
+func _process(delta):
+	$"../HoleParticles".emitting = ($"../N3light".visible or $"../N4light".visible)
+
 func _on_area_3d_2_body_entered(body):
 	var collectibleComponent = body.get_node_or_null("CollectibleComponent")
 

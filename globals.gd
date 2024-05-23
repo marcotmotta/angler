@@ -16,15 +16,15 @@ var dialogues = [
 		'The Lighthouse:\n\nFEED ME MOOOORE',
 	],
 	[ # give 2 wood
-		'* You notice the lighthouse`s fire radiating stronger *',
+		'*** You notice the lighthouse`s fire radiating stronger ***',
 		'The Lighthouse:\n\nIT’S NOT ENOUGH! MOOOORE',
 	],
 	[ # give oil
-		'* You notice the lighthouse`s fire radiating stronger *',
+		'*** You notice the light increasing even more ***',
 		'The Lighthouse:\n\nUUUUUUUUUH, YEEEESS! MOOOOOORE!',
 	],
 	[ # give boar
-		'* You notice the lighthouse`s fire radiating stronger *',
+		'*** You feel the ground shaking and the light becoming stronger ***',
 		'The Lighthouse:\n\nAAAAAH… ALMOST THERE! BRING MORE! MORE LIGHT!',
 	],
 ]

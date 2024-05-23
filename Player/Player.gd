@@ -214,8 +214,6 @@ func _on_damage_timeout():
 			health = min(MAX_HEALTH, health + 1)
 			$UI/DeathUI.update_borders(health)
 
-		print(health)
-
 func _on_item_was_dropped_in_the_hole(item_type):
 	if item_type == Globals.required_items[current_level - 1]['type']:
 		Globals.required_items[current_level - 1]['amount'] -= 1

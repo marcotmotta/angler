@@ -17,7 +17,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352616, 0)
 shape = SubResource("BoxShape3D_wxth3")
 
 [node name="DestructibleComponent" parent="." instance=ExtResource("2_qxyij")]
-MAX_HEALTH = 4.0
+MAX_HEALTH = 5.0
 drop = ExtResource("3_ji7dr")
 particle = ExtResource("4_obxg7")
 
