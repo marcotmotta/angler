@@ -1,5 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://uosxp1047q5q"]
 
+[ext_resource type="AudioStream" uid="uid://dgdko61nx0u1y" path="res://Sounds/RelaxingOceanWaves.mp3" id="1_7s6sm"]
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
 [ext_resource type="Shader" path="res://Shaders/LowPolyWater.gdshader" id="2_s5ct0"]
 [ext_resource type="PackedScene" uid="uid://dwonq6smq66e5" path="res://Assets/Tree/TreeA.tscn" id="5_x4ls6"]
@@ -65,6 +66,12 @@ point_count = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x68d6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("1_7s6sm")
+volume_db = -10.0
+autoplay = true
 
 [node name="N1light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
