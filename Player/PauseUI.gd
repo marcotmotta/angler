@@ -5,7 +5,7 @@ var note_button_scene = preload("res://UI/NoteButton.tscn")
 var paused_by_ui = false
 
 func _input(event):
-	if Input.is_action_just_pressed("esc"):
+	if Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("tab"):
 		if not get_tree().paused:
 			pause_game()
 			paused_by_ui = true
@@ -40,7 +40,7 @@ func _on_continue_pressed():
 func _on_exit_pressed():
 	paused_by_ui = false
 	get_tree().paused = false
-	# FIXME: add return to menu
+	get_tree().change_scene_to_file("res://Menu/Menu.tscn")
 
 func open_note(text_id):
 	$"../Note".open(text_id, true)

@@ -75,7 +75,7 @@ omni_range = 33.0
 [node name="N3light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
 visible = false
-light_energy = 80.0
+light_energy = 60.0
 light_specular = 0.0
 shadow_enabled = true
 shadow_opacity = 0.3
@@ -83,7 +83,7 @@ omni_range = 40.0
 
 [node name="N4light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
-light_energy = 80.0
+light_energy = 60.0
 light_specular = 0.0
 shadow_enabled = true
 shadow_opacity = 0.3
@@ -104,7 +104,35 @@ transform = Transform3D(0.960191, 0, -0.279343, 0, 1, 0, 0.279343, 0, 0.960191, 
 
 [node name="Note" parent="." instance=ExtResource("6_biadx")]
 transform = Transform3D(0.11477, 0.04073, 0.992557, -0.334448, 0.942414, 1.49012e-08, -0.935399, -0.331959, 0.121783, 9.78139, 2.64045, 16.0409)
-TEXT_ID = "n1t1"
+TEXT_ID = "n1"
+
+[node name="Note2" parent="." instance=ExtResource("6_biadx")]
+transform = Transform3D(-0.181306, -0.0643429, 0.98132, -0.334448, 0.942414, 1.13146e-08, -0.924809, -0.328201, -0.192385, 1.29618, 2.64045, 11.6856)
+TEXT_ID = "n2"
+
+[node name="Note3" parent="." instance=ExtResource("6_biadx")]
+transform = Transform3D(0.612537, 0.21738, 0.759964, 0.368622, 0.771933, -0.517916, -0.699225, 0.597382, 0.392707, 3.00292, 2.64045, 7.5813)
+TEXT_ID = "n3"
+
+[node name="Note4" parent="." instance=ExtResource("6_biadx")]
+transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, -4.40321, 2.80608, 10.8593)
+TEXT_ID = "n4"
+
+[node name="Note5" parent="." instance=ExtResource("6_biadx")]
+transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, -7.85505, 3.44482, 3.57036)
+TEXT_ID = "n5"
+
+[node name="Note6" parent="." instance=ExtResource("6_biadx")]
+transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, 13.8006, 2.98539, -6.87531)
+TEXT_ID = "n6"
+
+[node name="Note7" parent="." instance=ExtResource("6_biadx")]
+transform = Transform3D(0.612537, 0.21738, 0.759964, -0.0624634, 0.971746, -0.227612, -0.78797, 0.0919507, 0.608809, 20.4091, 3.4151, -8.92461)
+TEXT_ID = "n7"
+
+[node name="Note8" parent="." instance=ExtResource("6_biadx")]
+transform = Transform3D(0.919656, -0.0325555, -0.391371, -0.0624634, 0.971746, -0.227612, 0.387723, 0.233771, 0.89164, 12.0196, 8.58866, -19.6984)
+TEXT_ID = "n8"
 
 [node name="StartN1" type="Area3D" parent="." groups=["start_n1"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.153, 0, 20)

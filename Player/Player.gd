@@ -207,10 +207,12 @@ func get_axe():
 func _on_damage_timeout():
 	if current_level > 0:
 		var light = get_parent().get_node('N' + str(current_level) + 'light')
-		if (self.global_position - light.global_position).length() > light.omni_range:
+		if (self.global_position - light.global_position).length() > light.omni_range - 2:
 			health = max(0, health - 1)
+			$UI/DeathUI.update_borders(health)
 		else:
 			health = min(MAX_HEALTH, health + 1)
+			$UI/DeathUI.update_borders(health)
 
 		print(health)
 
