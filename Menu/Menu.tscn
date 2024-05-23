@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgscrfxtbr26b"]
+[gd_scene load_steps=13 format=3 uid="uid://cgscrfxtbr26b"]
 
 [ext_resource type="Texture2D" uid="uid://dm1h3jvxhy5vs" path="res://UI/BG-START.png" id="1_g4ogh"]
 [ext_resource type="Script" path="res://Menu/Menu.gd" id="1_ptqlo"]
@@ -6,6 +6,28 @@
 [ext_resource type="Texture2D" uid="uid://ufyml3g6tgyw" path="res://UI/PLAY-BUTTON-2.png" id="3_rqx44"]
 [ext_resource type="Texture2D" uid="uid://bg2akyvyu3vy" path="res://UI/EXIT-BUTTON.png" id="4_apixh"]
 [ext_resource type="Texture2D" uid="uid://bcdbui3xokcj0" path="res://UI/EXIT-BUTTON-2.png" id="5_vtdxj"]
+[ext_resource type="Texture2D" uid="uid://cjdq32faosqu5" path="res://UI/LETTER-BG.png" id="7_uam8h"]
+[ext_resource type="FontFile" uid="uid://ccyx16lbv20bt" path="res://UI/veteran typewriter.ttf" id="8_wopgb"]
+[ext_resource type="PackedScene" uid="uid://b2yagr7ehu1l" path="res://UI/NoteButton.tscn" id="9_yo0dt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xb68h"]
+font = ExtResource("8_wopgb")
+font_size = 35
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vl5ye"]
+font = ExtResource("8_wopgb")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88ihm"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.941176)
+border_color = Color(1, 0.748667, 0.48, 1)
+border_blend = true
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -49,6 +71,69 @@ texture_hover = ExtResource("3_rqx44")
 layout_mode = 2
 texture_normal = ExtResource("4_apixh")
 texture_hover = ExtResource("5_vtdxj")
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Credits"]
+position = Vector2(575, 325)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_uam8h")
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -174.0
+offset_right = 20.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_xb68h")
+
+[node name="Label2" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -172.0
+offset_right = 315.0
+offset_bottom = 235.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Gustavo Zille - Programmer
+Joshua Pavanello - Level Designer/3D Artist
+Marco Túlio - Programmer
+Ramon Miranda - Project Manager/Storyteller
+Wesley Moschem - 3D Artist"
+label_settings = SubResource("LabelSettings_vl5ye")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoteButton" parent="." instance=ExtResource("9_yo0dt")]
+layout_mode = 0
+offset_left = 991.0
+offset_top = 594.0
+offset_right = 1186.0
+offset_bottom = 653.0
+scale = Vector2(0.8, 0.8)
+theme_override_styles/normal = SubResource("StyleBoxFlat_88ihm")
+text = "CREDITS"
+from_menu = true
 
 [connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/ExitButton" to="." method="_on_exit_button_pressed"]

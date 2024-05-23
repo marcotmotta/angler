@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://uosxp1047q5q"]
+[gd_scene load_steps=27 format=3 uid="uid://uosxp1047q5q"]
 
 [ext_resource type="AudioStream" uid="uid://dgdko61nx0u1y" path="res://Sounds/RelaxingOceanWaves.mp3" id="1_7s6sm"]
 [ext_resource type="PackedScene" uid="uid://4bpysmfyaucd" path="res://Player/Player.tscn" id="1_vcvoh"]
@@ -22,6 +22,18 @@ height = 100.0
 
 [sub_resource type="MeshTexture" id="MeshTexture_v7lnn"]
 mesh = SubResource("SphereMesh_wnn6p")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_glxu2"]
+size = Vector3(100, 40, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_52o6m"]
+size = Vector3(120, 40, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wsmrc"]
+size = Vector3(120, 40, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pa4ak"]
+size = Vector3(120, 40, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1pnir"]
 render_priority = 0
@@ -95,6 +107,7 @@ omni_range = 33.0
 
 [node name="N3light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 20, 20)
+visible = false
 light_energy = 60.0
 light_specular = 0.0
 shadow_enabled = true
@@ -115,13 +128,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 16, 20)
 
 [node name="Map" parent="." instance=ExtResource("6_hfbka")]
 
+[node name="WaterCollisions" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 35.0986)
+shape = SubResource("BoxShape3D_glxu2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WaterCollisions"]
+transform = Transform3D(0.274094, 0, 0.961703, 0, 1, 0, -0.961703, 0, 0.274094, 21.6142, 0, 29.5966)
+shape = SubResource("BoxShape3D_52o6m")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WaterCollisions"]
+transform = Transform3D(-0.448945, 0, 0.89356, 0, 1, 0, -0.89356, 0, -0.448945, -20.0266, 0, 29.5966)
+shape = SubResource("BoxShape3D_wsmrc")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="WaterCollisions"]
+transform = Transform3D(0.764562, 0, 0.644551, 0, 1, 0, -0.644551, 0, 0.764562, -10.0974, 0, -20.1797)
+shape = SubResource("BoxShape3D_pa4ak")
+
 [node name="Water" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Water"]
 mesh = SubResource("PlaneMesh_blwn6")
 
 [node name="Player" parent="." instance=ExtResource("1_vcvoh")]
-transform = Transform3D(0.960191, 0, -0.279343, 0, 1, 0, 0.279343, 0, 0.960191, 1.66214, 2.09525, 31.3748)
+transform = Transform3D(0.960191, 0, -0.279343, 0, 1, 0, 0.279343, 0, 0.960191, 1.66214, 1.28853, 31.3748)
 
 [node name="Note" parent="." instance=ExtResource("6_biadx")]
 transform = Transform3D(0.11477, 0.04073, 0.992557, -0.334448, 0.942414, 1.49012e-08, -0.935399, -0.331959, 0.121783, 9.78139, 2.64045, 16.0409)

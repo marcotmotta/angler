@@ -9,7 +9,7 @@ var dialogues = [
 	],
 	[ # approach
 		'The Lighthouse:\n\nDARK IS DANGEEER…',
-		'The Lighthouse:\n\nI GIVE YOU LIGHT…s',
+		'The Lighthouse:\n\nI GIVE YOU LIGHT…',
 		'The Lighthouse:\n\nFEEEED MEEEEEE'
 	],
 	[ # give 1 wood

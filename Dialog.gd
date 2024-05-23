@@ -41,6 +41,8 @@ func end_dialog():
 	is_active = false
 	current_line = 0
 	get_tree().paused = false
+	if current_dialog == 1:
+		$Background.visible = false
 
 func _on_timer_timeout():
 	$Label.set_visible_characters($Label.get_visible_characters() + 1)
