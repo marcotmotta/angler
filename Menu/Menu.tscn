@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgscrfxtbr26b"]
+[gd_scene load_steps=15 format=3 uid="uid://cgscrfxtbr26b"]
 
 [ext_resource type="Texture2D" uid="uid://dm1h3jvxhy5vs" path="res://UI/BG-START.png" id="1_g4ogh"]
 [ext_resource type="Script" path="res://Menu/Menu.gd" id="1_ptqlo"]
 [ext_resource type="Texture2D" uid="uid://hhlly5qxpcli" path="res://UI/PLAY-BUTTON.png" id="2_63gek"]
-[ext_resource type="Texture2D" uid="uid://ufyml3g6tgyw" path="res://UI/PLAY-BUTTON-2.png" id="3_rqx44"]
+[ext_resource type="Texture2D" uid="uid://co21uug50e6n3" path="res://UI/titulo.png" id="3_jgovh"]
 [ext_resource type="Texture2D" uid="uid://bg2akyvyu3vy" path="res://UI/EXIT-BUTTON.png" id="4_apixh"]
-[ext_resource type="Texture2D" uid="uid://bcdbui3xokcj0" path="res://UI/EXIT-BUTTON-2.png" id="5_vtdxj"]
+[ext_resource type="Texture2D" uid="uid://blgmitnt461id" path="res://UI/PLAY-BUTTON_2.png" id="5_gc3ok"]
+[ext_resource type="Texture2D" uid="uid://dqjyi12dp3p0a" path="res://UI/EXIT-BUTTON_2.png" id="7_p2rnl"]
 [ext_resource type="Texture2D" uid="uid://cjdq32faosqu5" path="res://UI/LETTER-BG.png" id="7_uam8h"]
 [ext_resource type="FontFile" uid="uid://ccyx16lbv20bt" path="res://UI/veteran typewriter.ttf" id="8_wopgb"]
 [ext_resource type="PackedScene" uid="uid://b2yagr7ehu1l" path="res://UI/NoteButton.tscn" id="9_yo0dt"]
+[ext_resource type="Texture2D" uid="uid://bvhbtuhaow8sn" path="res://UI/Punchline.png" id="10_8afaa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xb68h"]
 font = ExtResource("8_wopgb")
@@ -48,6 +50,11 @@ grow_vertical = 2
 texture = ExtResource("1_g4ogh")
 expand_mode = 3
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(189, 101)
+scale = Vector2(0.360412, 0.360412)
+texture = ExtResource("3_jgovh")
+
 [node name="ButtonsContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -61,16 +68,17 @@ offset_right = 276.5
 offset_bottom = 246.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
 
 [node name="PlayButton" type="TextureButton" parent="ButtonsContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_63gek")
-texture_hover = ExtResource("3_rqx44")
+texture_hover = ExtResource("5_gc3ok")
 
 [node name="ExitButton" type="TextureButton" parent="ButtonsContainer"]
 layout_mode = 2
 texture_normal = ExtResource("4_apixh")
-texture_hover = ExtResource("5_vtdxj")
+texture_hover = ExtResource("7_p2rnl")
 
 [node name="Credits" type="Control" parent="."]
 visible = false
@@ -112,7 +120,7 @@ anchor_bottom = 0.5
 offset_left = -315.0
 offset_top = -172.0
 offset_right = 315.0
-offset_bottom = 235.0
+offset_bottom = 212.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Gustavo Zille - Programmer
@@ -123,6 +131,11 @@ Wesley Moschem - 3D Artist"
 label_settings = SubResource("LabelSettings_vl5ye")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="Credits"]
+position = Vector2(575, 510)
+scale = Vector2(0.0946192, 0.0946192)
+texture = ExtResource("10_8afaa")
 
 [node name="NoteButton" parent="." instance=ExtResource("9_yo0dt")]
 layout_mode = 0
